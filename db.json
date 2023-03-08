@@ -43,33 +43,7 @@
   ],
   "money": [
     {
-      "amount": "1000",
-      "userId": "5",
-      "user": {
-        "address": "Lakshan, Comilla",
-        "password": "dfgh453#",
-        "email": "foridurrahman@gmail.com",
-        "age": 18,
-        "name": "Foridur Rahman",
-        "id": 5
-      },
-      "id": 1
-    },
-    {
-      "amount": "5000",
-      "userId": "6",
-      "user": {
-        "address": "Uttor-bongo, Bd",
-        "password": "34dgsa$s#",
-        "email": "riponbaidurroo@gmail.com",
-        "age": 32,
-        "name": "Ripon Mondol",
-        "id": 6
-      },
-      "id": 2
-    },
-    {
-      "amount": "5000",
+      "amount": "2000",
       "userId": "3",
       "user": {
         "address": "Narayngonj, Dhaka",
@@ -79,46 +53,33 @@
         "name": "Sabbir hosain",
         "id": 3
       },
-      "id": 3
-    },
-    {
-      "amount": "522",
-      "userId": "2",
-      "user": {
-        "address": "Bhola, Barishal ",
-        "password": "2154segassdv@4",
-        "email": "Johirbahr@gamil.com",
-        "age": 27,
-        "name": "Zahir Bahdur",
-        "id": 2
-      },
-      "id": 4
-    },
-    {
-      "amount": "1000",
-      "userId": "2",
-      "user": {
-        "address": "Bhola, Barishal ",
-        "password": "2154segassdv@4",
-        "email": "Johirbahr@gamil.com",
-        "age": 27,
-        "name": "Zahir Bahdur",
-        "id": 2
-      },
-      "id": 5
+      "id": 1
     },
     {
       "amount": "5000",
-      "userId": "5",
+      "userId": "2",
       "user": {
-        "address": "Lakshan, Comilla",
-        "password": "dfgh453#",
-        "email": "foridurrahman@gmail.com",
-        "age": 18,
-        "name": "Foridur Rahman",
-        "id": 5
+        "address": "Bhola, Barishal ",
+        "password": "2154segassdv@4",
+        "email": "Johirbahr@gamil.com",
+        "age": 27,
+        "name": "Zahir Bahdur",
+        "id": 2
       },
-      "id": 6
+      " id": 2
+    },
+    {
+      "amount": "4000",
+      "userId": "4",
+      "user": {
+        "address": "Uttor-bongo, Bd",
+        "password": "fhald @$sr56",
+        "email": "mehedi@gmail.com",
+        "age": 29,
+        "name": "Mehedi Hasain S",
+        "id": 4
+      },
+      "id": 3
     }
   ],
   "meal": [
@@ -165,54 +126,22 @@
       "id": 3
     },
     {
-      "meal": "2",
-      "date": "2023-03-05",
-      "userId": "5",
+      "userId": "3",
+      "date": "2023-03-07",
+      "meal": "5",
       "user": {
-        "address": "Lakshan, Comilla",
-        "password": "dfgh453#",
-        "email": "foridurrahman@gmail.com",
-        "age": 18,
-        "name": "Foridur Rahman",
-        "id": 5
+        "address": "Narayngonj, Dhaka",
+        "password": "asdfg45#5@2",
+        "email": "sabbirhosain@gmail.com",
+        "age": 20,
+        "name": "Sabbir hosain",
+        "id": 3
       },
       "id": 4
     },
     {
-      "meal": "2",
-      "date": "2023-03-05",
-      "userId": "6",
-      "user": {
-        "address": "Uttor-bongo, Bd",
-        "password": "34dgsa$s#",
-        "email": "riponbaidurroo@gmail.com",
-        "age": 32,
-        "name": "Ripon Mondol",
-        "id": 6
-      },
-      "id": 5
-    }
-  ],
-  "mealCost": [
-    {
-      "date": "2023-03-05",
-      "bzdetails": "chal-3kg\ndal -4kg",
-      "bzcost": "640",
-      "userId": "2",
-      "user": {
-        "address": "Bhola, Barishal ",
-        "password": "2154segassdv@4",
-        "email": "Johirbahr@gamil.com",
-        "age": 27,
-        "name": "Zahir Bahdur",
-        "id": 2
-      },
-      "id": 1
-    },
-    {
-      "date": "2023-03-02",
-      "bzdetails": "meat-2kg\noil-3kg\nmoric-250gm",
-      "bzcost": "1540",
+      "meal": "5",
+      "date": "2023-03-08",
       "userId": "3",
       "user": {
         "address": "Narayngonj, Dhaka",
@@ -222,13 +151,44 @@
         "name": "Sabbir hosain",
         "id": 3
       },
-      "id": 2
+      "id": 5
     },
     {
-      "date": "2023-03-03",
-      "bzdetails": "Fish-1kg\nvegetable-200tk",
-      "bzcost": "500",
+      "meal": "5",
+      "date": "2023-03-08",
+      "userId": "2",
+      "user": {
+        "address": "Bhola, Barishal ",
+        "password": "2154segassdv@4",
+        "email": "Johirbahr@gamil.com",
+        "age": 27,
+        "name": "Zahir Bahdur",
+        "id": 2
+      },
+      "id": 6
+    }
+  ],
+  "mealCost": [
+    {
+      "userId": "3",
+      "date": "2023-03-05",
+      "bzdetails": "chal-3kg\ndal -4kg",
+      "bzcost": "640",
+      "user": {
+        "address": "Narayngonj, Dhaka",
+        "password": "asdfg45#5@2",
+        "email": "sabbirhosain@gmail.com",
+        "age": 20,
+        "name": "Sabbir hosain",
+        "id": 3
+      },
+      "id": 1
+    },
+    {
       "userId": "4",
+      "date": "2023-03-02",
+      "bzdetails": "meat-2kg\noil-3kg\nmoric-250gm",
+      "bzcost": "5678",
       "user": {
         "address": "Uttor-bongo, Bd",
         "password": "fhald @$sr56",
@@ -237,13 +197,13 @@
         "name": "Mehedi Hasain S",
         "id": 4
       },
-      "id": 3
+      "id": 2
     },
     {
-      "date": "2023-03-04",
-      "bzdetails": "Ata-2kg\nAlu-3kg\n",
-      "bzcost": "200",
       "userId": "5",
+      "date": "2023-03-07",
+      "bzdetails": "alu-2kg\nfish-4kg",
+      "bzcost": "7000",
       "user": {
         "address": "Lakshan, Comilla",
         "password": "dfgh453#",
@@ -252,7 +212,22 @@
         "name": "Foridur Rahman",
         "id": 5
       },
-      "id": 4
+      "id": 7
+    },
+    {
+      "date": "2023-03-07",
+      "bzdetails": "abol-tabol-2kg",
+      "bzcost": "2000",
+      "userId": "6",
+      "user": {
+        "address": "Uttor-bongo, Bd",
+        "password": "34dgsa$s#",
+        "email": "riponbaidurroo@gmail.com",
+        "age": 35,
+        "name": "Ripon Mondol",
+        "id": 6
+      },
+      "id": 8
     }
   ],
   "otherCost": [
@@ -301,6 +276,11 @@
       "userId": 2,
       "bazardate": "one",
       "id": 5
+    },
+    {
+      "userId": "3",
+      "bazardate": "one",
+      "id": 6
     }
   ]
 }

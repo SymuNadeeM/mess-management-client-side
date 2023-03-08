@@ -3,10 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./PageLayout/Layout";
 
 import AddMoney from "./pages/AddMoney/AddMoney";
-import MoneyEdite from "./pages/AddMoney/MoneyEdite";
+
 import UserMoneyList from "./pages/AddMoney/UserMoneyList";
 import AddMember from "./pages/Member/AddMember";
 
+import MoneyEdite from "./pages/AddMoney/MoneyEdite";
 import AddBazarDay from "./pages/BazarDay/AddBazarDay";
 import BazarDayList from "./pages/BazarDay/BazarDayList";
 import DashBoard from "./pages/DashBoard";
@@ -35,7 +36,7 @@ function App() {
 
           {/* Add Money */}
           <Route path="/add-money" element={<AddMoney />} />
-          <Route path="/edite-money/:id" element={<MoneyEdite />} />
+          <Route path="/money-edite/:id" element={<MoneyEdite />} />
           <Route path="/money-list" element={<UserMoneyList />} />
 
           {/* Add meal  */}

@@ -7,6 +7,13 @@ const MealList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const handleDelete = (id) => {
+    if (window.confirm("are you sure?")) {
+      axios.delete(`http://localhost:4000/meal/${id}`);
+    }
+    window.location.reload();
+  };
+
   useEffect(() => {
     const getdata = async () => {
       await axios
@@ -51,6 +58,7 @@ const MealList = () => {
               <th class="  p-2 text-left block md:table-cell">Date</th>
               <th class=" p-2 text-left block md:table-cell">Meal</th>
               <th class=" p-2 text-left block md:table-cell">Name</th>
+              <th class=" p-2 text-left block md:table-cell">Action</th>
             </tr>
           </thead>
           <tbody class=" mt-2 block md:table-row-group shadow-md">
@@ -76,6 +84,25 @@ const MealList = () => {
                     Name:
                   </span>
                   <td>{items?.user?.name} </td>
+                </td>
+                <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
+                  <span class="inline-block w-1/3 md:hidden font-bold">
+                    Actions
+                  </span>
+
+                  <button className=" bg-green2  text-white font-bold py-1 px-2 border border-blue-500 rounded">
+                    <Link to={`/edite-meal/${items.id}`}>
+                      {/* <OtherCostEdite /> */}
+                      Edite
+                    </Link>
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(items.id)}
+                    class=" ml-2 bg-btnbg  text-white font-bold py-1 px-2 border border-red-500 rounded"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
