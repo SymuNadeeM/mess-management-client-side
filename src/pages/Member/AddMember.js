@@ -1,42 +1,10 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import useMember from "../../hook/useMember";
 
-const schema = yup.object().shape({
-  name: yup.string().required("Full Name should be required please"),
-  age: yup.number().positive().integer().required(),
-  email: yup.string().required("Email should be required please"),
-  password: yup.string().required("password should be required please"),
-  address: yup.string().required("address should be required please"),
-});
 
 const AddMember = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const submitForm = (data) => {
-    axios
-      .post("http://localhost:4000/newmember", data)
-      .then((res) => {
-        alert("player create successfully!");
-        setValue("name", "");
-        setValue("age", "");
-        setValue("email", "");
-        setValue("password", "");
-        setValue("address", "");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  
+  const {register,handleSubmit,submitForm,errors} = useMember()
 
   return (
     <>
@@ -62,19 +30,7 @@ const AddMember = () => {
                   />
                   <p className=" text-[#FF0303]"> {errors.name?.message} </p>
                 </div>
-                <div className="flex flex-col space-y-1">
-                  <label htmlFor="age" className=" font-jose">
-                    Age
-                  </label>
-                  <input
-                    type="text"
-                    name="age"
-                    className="w-full md:w-2/5 px-4 py-2 outline-none rounded"
-                    {...register("age")}
-                    placeholder="Age"
-                  />
-                  <p className=" text-[#FF0303]"> {errors.age?.message} </p>
-                </div>
+               
                 <div className=" flex flex-col space-y-1">
                   <label htmlFor="email" className=" font-jose">
                     E-mail
@@ -101,21 +57,20 @@ const AddMember = () => {
                   />
                   <p className=" text-[#FF0303]">{errors.password?.message}</p>
                 </div>
-                <div className=" flex flex-col space-y-1">
-                  <label htmlFor="address" className=" font-jose">
-                    Address
+                <div className="flex flex-col space-y-1">
+                  <label htmlFor="phone" className=" font-jose">
+                    phone
                   </label>
-                  <textarea
+                  <input
                     type="text"
-                    name="address"
+                    name="phone"
                     className="w-full md:w-2/5 px-4 py-2 outline-none rounded"
-                    {...register("address")}
-                    placeholder="address"
-                    cols="30"
-                    rows="5"
-                  ></textarea>
-                  <p className=" text-[#FF0303]"> {errors.address?.message} </p>
+                    {...register("phone")}
+                    placeholder="phone"
+                  />
+                  <p className=" text-[#FF0303]"> {errors.phone?.message} </p>
                 </div>
+                
               </div>
 
               <div

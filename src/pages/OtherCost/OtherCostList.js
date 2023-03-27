@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-// import OtherCostEdite from "./OtherCostEdite";
+import useAsync from "../../hook/useAsync";
+import OthersCostServices from "../../services/OthersCostServices";
+
 
 const OtherCostList = () => {
-  const [data, setData] = useState([]);
-  const [loading, setloading] = useState(false);
-  const [error, seterror] = useState(null);
+
+  
+  const {data,error,loading} = useAsync(OthersCostServices.getAllOthersCost)
+
 
   const handleDelete = (id) => {
     if (window.confirm("are you sure?")) {
@@ -15,29 +18,7 @@ const OtherCostList = () => {
     }
   };
 
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/otherCost")
-        .then((res) => {
-          setData(res.data);
-          setloading(false);
-        })
-        .catch((err) => {
-          seterror(err);
-          setloading(false);
-        });
-    };
-    getdata();
-  }, []);
-
-  if (loading) {
-    return <div>Loading.....</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
-
+ 
   return (
     <>
       <div className="mt-[30px]   px-[30px] md:p-[10px]">
@@ -57,14 +38,16 @@ const OtherCostList = () => {
               <th class="  p-2 text-left block md:table-cell">Date</th>
               <th class=" p-2 text-left block md:table-cell">Details</th>
               <th class=" p-2 text-left block md:table-cell">Amount</th>
+              <th class=" p-2 text-left block md:table-cell">Name</th>
               <th class=" p-2 text-left block md:table-cell">Action</th>
             </tr>
           </thead>
           <tbody class=" mt-2 block md:table-row-group shadow-md">
-            {data?.map((items) => (
+            { loading ? "Loading.." : 
+             data?.data?.map((items) => (
               <tr
                 class=" bg-white font-archivo border border-spacing-2  border-btnbg md:border-none block md:table-row"
-                key={items.id}
+                key={items._id}
               >
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
@@ -74,15 +57,21 @@ const OtherCostList = () => {
                 </td>
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
-                    Details :
+                  cost Name
                   </span>
-                  <td>{items.otherCostdetails}</td>
+                  <td>{items.costName}</td>
                 </td>
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
                     Amonut :
                   </span>
-                  <td>{items.otherCostAmount} Taka </td>
+                  <td>{items.costPrice} Taka </td>
+                </td>
+                <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
+                  <span className="inline-block w-1/3 md:hidden  font-bold">
+                  member :
+                  </span>
+                  <td>{items.member} Taka </td>
                 </td>
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span class="inline-block w-1/3 md:hidden font-bold">

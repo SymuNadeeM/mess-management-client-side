@@ -1,42 +1,16 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAsync from "../../hook/useAsync";
+import usePaidAmount from "../../hook/usePaidAmount";
+import PaidAmountServices from "../../services/PaidAmountServices";
 
 const UserMoneyList = () => {
-  const [data, setData] = useState([]);
-  const [loading, setloading] = useState(false);
-  const [error, seterror] = useState(null);
 
-  const handleDelete = (id) => {
-    if (window.confirm("are you sure?")) {
-      axios.delete(`http://localhost:4000/money/${id}`);
-    }
-    window.location.reload();
-  };
 
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/money")
-        .then((res) => {
-          setData(res.data);
-          setloading(false);
-        })
-        .catch((err) => {
-          seterror(err);
-          setloading(false);
-        });
-    };
-    getdata();
-  }, []);
+  const {data,error,loading}=useAsync(PaidAmountServices.getAllPaidAmount)
+  //console.log(data?.data);  
+  const {handleDelete} = usePaidAmount()
 
-  if (loading) {
-    return <div>Loading... </div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
-
+  
   return (
     <>
       <div className="mt-[30px]   px-[30px] md:p-[10px]">
@@ -62,22 +36,23 @@ const UserMoneyList = () => {
             </tr>
           </thead>
           <tbody class=" mt-2 block md:table-row-group shadow-md">
-            {data?.map((items) => (
+            { loading ? "Loading..." :
+            data?.data?.map((items) => (
               <tr
                 class=" bg-white font-archivo border border-spacing-2  border-btnbg md:border-none block md:table-row"
-                key={items.id}
+                key={items._id}
               >
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
                     Id :
                   </span>
-                  <td>{items.id}</td>
+                  <td>{items._id}</td>
                 </td>
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
                     UserName :
                   </span>
-                  <td>{items?.user.name}</td>
+                  <td>{items.member}</td>
                 </td>
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
@@ -91,11 +66,11 @@ const UserMoneyList = () => {
                   </span>
 
                   <button className=" bg-green2  text-white font-bold py-1 px-2 border border-blue-500 rounded">
-                    <Link to={`/money-edite/${items.id}`}>Edite</Link>
+                    <Link to={`/money-edite/${items._id}`}>Edite</Link>
                   </button>
 
                   <button
-                    onClick={() => handleDelete(items.id)}
+                    onClick={() => handleDelete(items._id)}
                     class=" ml-2 bg-btnbg  text-white font-bold py-1 px-2 border border-red-500 rounded"
                   >
                     Delete

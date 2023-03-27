@@ -1,76 +1,14 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import useAsync from "../../hook/useAsync";
+import usePaidAmount from "../../hook/usePaidAmount";
+import MemberServices from "../../services/MemberServices";
 
-const schema = yup.object().shape({
-  userId: yup.string().required("User name should be required please"),
-  amount: yup.string().required("amount should be required please"),
-});
 
 const AddMoney = () => {
-  const [data, setdata] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, seterror] = useState(null);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+const {register,handleSubmit,submitForm,errors}=usePaidAmount()
+const {data,error,loading}=useAsync(MemberServices.getAllMember)
 
-  const submitForm = async (sdata) => {
-    try {
-      const res = await axios.get(
-        `http://localhost:4000/newmember?id=${sdata.userId}`
-      );
-      const submitData = {
-        ...sdata,
-        user: res.data[0],
-      };
-
-      console.log("submitData ========>", submitData);
-
-      axios
-        .post("http://localhost:4000/money", submitData)
-        .then((res) => {
-          alert("Added member money successfully!");
-          setValue("amount", "");
-          setValue("userId", "");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/newmember")
-        .then((res) => {
-          setdata(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          seterror(err);
-          setLoading(false);
-        });
-    };
-
-    getdata();
-  }, []);
-
-  if (loading) {
-    return <div>Loading....</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
+  
   return (
     <>
       <div className="mt-[30px]  px-[30px] md:px-0">
@@ -113,12 +51,13 @@ const AddMoney = () => {
 
                   <select
                     className="px-4 py-2 outline-none rounded"
-                    {...register("userId", {
+                    {...register("member", {
                       required: false,
                     })}
                   >
-                    {data?.map((item, i) => (
-                      <option key={i + 1} value={item.id}>
+                    { loading ? "Loading..." :
+                    data?.data?.map((item, i) => (
+                      <option key={i + 1} value={item._id}>
                         {item?.name}
                       </option>
                     ))}

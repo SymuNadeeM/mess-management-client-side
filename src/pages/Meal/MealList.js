@@ -1,41 +1,21 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import useAsync from "../../hook/useAsync";
+import useDailyMeal from "../../hook/useDailyMeal";
+import DailyMealCountServices from "../../services/DailyMealCountServices";
 
 const MealList = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const handleDelete = (id) => {
-    if (window.confirm("are you sure?")) {
-      axios.delete(`http://localhost:4000/meal/${id}`);
-    }
-    window.location.reload();
-  };
 
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/meal")
-        .then((res) => {
-          setData(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-          setError(err);
-        });
-    };
-    getdata();
-  }, []);
+const {data,error,loading}=useAsync(DailyMealCountServices.getAllDailyMealCount)
+console.log(data?.data);
+  
 
-  if (loading) {
-    return <div> Loading....</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
+const {handleDelete} = useDailyMeal()
+ 
+  
+
+  
 
   return (
     <>
@@ -62,10 +42,11 @@ const MealList = () => {
             </tr>
           </thead>
           <tbody class=" mt-2 block md:table-row-group shadow-md">
-            {data?.map((items) => (
+            { loading ? "loading.." :
+            data?.data?.map((items) => (
               <tr
                 class=" bg-white font-archivo border border-spacing-2  border-btnbg md:border-none block md:table-row"
-                key={items.id}
+                key={items._id}
               >
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
@@ -77,13 +58,13 @@ const MealList = () => {
                   <span className="inline-block w-1/3 md:hidden  font-bold">
                     Meal:
                   </span>
-                  <td>{items.meal}</td>
+                  <td>{items.mealCount}</td>
                 </td>
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span className="inline-block w-1/3 md:hidden  font-bold">
                     Name:
                   </span>
-                  <td>{items?.user?.name} </td>
+                  <td>{items.member} </td>
                 </td>
                 <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                   <span class="inline-block w-1/3 md:hidden font-bold">
@@ -98,7 +79,7 @@ const MealList = () => {
                   </button>
 
                   <button
-                    onClick={() => handleDelete(items.id)}
+                    onClick={() => handleDelete(items._id)}
                     class=" ml-2 bg-btnbg  text-white font-bold py-1 px-2 border border-red-500 rounded"
                   >
                     Delete

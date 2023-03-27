@@ -39,6 +39,14 @@
       "age": 35,
       "name": "Ripon Mondol",
       "id": 6
+    },
+    {
+      "name": "Faruki Forid",
+      "age": 35,
+      "email": "faruki@gmail.com",
+      "password": "6250adsfds",
+      "address": "dhaka",
+      "id": 7
     }
   ],
   "money": [

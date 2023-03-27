@@ -1,78 +1,15 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import useAsync from "../../hook/useAsync";
+import useBazarList from "../../hook/useBazarList";
+import MemberServices from "../../services/MemberServices";
 
-const schema = yup.object().shape({
-  userId: yup.string().required("User name should be required please"),
-  date: yup.string().required("Date should be required please"),
-  bzdetails: yup.string().required("bzdetails should be required please"),
-  bzcost: yup.string().required("bzcost should be required please"),
-});
 
 const AddMealCost = () => {
-  const [data, setdata] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, seterror] = useState(null);
+ 
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const submitForm = async (sdata) => {
-    try {
-      const res = await axios.get(
-        `http://localhost:4000/newmember?id=${sdata.userId}`
-      );
-      const getsubdata = {
-        ...sdata,
-        user: res.data[0],
-      };
-      console.log(getsubdata);
-      axios
-        .post("http://localhost:4000/mealCost", getsubdata)
-        .then((res) => {
-          alert("Bazar list added successfully!");
-          setValue("userId", "");
-          setValue("date", "");
-          setValue("bzdetails", "");
-          setValue("bzcost", "");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/newmember")
-        .then((res) => {
-          setdata(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          seterror(err);
-          setLoading(false);
-        });
-    };
-
-    getdata();
-  }, []);
-
-  if (loading) {
-    return <div>Loading....</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
+ const {submitForm ,register, handleSubmit,errors} = useBazarList()
+ const {data,error,loading}=useAsync(MemberServices.getAllMember)
+ 
+ 
   return (
     <>
       <div className="mt-[30px]  px-[30px] md:px-0">
@@ -106,41 +43,75 @@ const AddMealCost = () => {
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="bzdetails"
+                    htmlFor="itemName"
                     className="font-jose text-lg text-white"
                   >
-                    Bazar Details
+                    Item Name
                   </label>
                   <textarea
                     type="text"
-                    name="bzdetails"
+                    name="itemName"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("bzdetails")}
-                    placeholder="Bazar details"
+                    {...register("itemName")}
+                    placeholder="itemName"
                     cols="30"
                     rows="6"
                   ></textarea>
 
                   <p className=" text-[#FF0303]">
-                    {errors.bzdetails?.message}{" "}
+                    {errors.itemName?.message}{" "}
                   </p>
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="bzcost"
+                    htmlFor="itemQuantity"
                     className="font-jose text-lg text-white"
                   >
-                    Bazar Cost
+                    item Quantity
                   </label>
 
                   <input
                     type="number"
-                    name="bzcost"
+                    name="itemQuantity"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("bzcost")}
-                    placeholder="Amount"
+                    {...register("itemQuantity")}
+                    placeholder="item Quantity"
                   />
-                  <p className=" text-[#FF0303]"> {errors.bzcost?.message} </p>
+                  <p className=" text-[#FF0303]"> {errors.itemQuantity?.message} </p>
+                </div>
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label
+                    htmlFor="unit"
+                    className="font-jose text-lg text-white"
+                  >
+                   Unit
+                  </label>
+
+                  <input
+                    type="number"
+                    name="unit"
+                    className=" px-4 py-2 outline-none rounded "
+                    {...register("unit")}
+                    placeholder="unit"
+                  />
+                  <p className=" text-[#FF0303]"> {errors.unit?.message} </p>
+                </div>
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label
+                    htmlFor="itemAmount"
+                    className="font-jose text-lg text-white"
+                  >
+                   item Amount
+                  </label>
+
+                  <input
+                    type="number"
+                    name="itemAmount"
+                    className=" px-4 py-2 outline-none rounded "
+                    {...register("itemAmount")}
+                    placeholder="item Amount"
+                  />
+                  <p className=" text-[#FF0303]"> {errors.itemAmount?.message} </p>
                 </div>
 
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
@@ -153,12 +124,13 @@ const AddMealCost = () => {
 
                   <select
                     className="px-4 py-2 outline-none rounded"
-                    {...register("userId", {
+                    {...register("member", {
                       required: false,
                     })}
                   >
-                    {data?.map((item, i) => (
-                      <option key={i + 1} value={item.id}>
+                    { loading ? "loading... " :
+                     data?.data?.map((item, i) => (
+                      <option key={i + 1} value={item._id}>
                         {item.name}
                       </option>
                     ))}

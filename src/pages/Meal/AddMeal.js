@@ -1,77 +1,19 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import React from "react";
+import useAsync from "../../hook/useAsync";
+import useDailyMeal from "../../hook/useDailyMeal";
+import MemberServices from "../../services/MemberServices";
 
-const schema = yup.object().shape({
-  userId: yup.string().required("User name should be required please"),
-  meal: yup.string().required("Meal should be required please"),
-  date: yup.string().required("Date should be required please"),
-});
 
 const AddMeal = () => {
-  const [data, setdata] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, seterror] = useState(null);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+ 
 
-  const submitForm = async (sdata) => {
-    try {
-      const res = await axios.get(
-        `http://localhost:4000/newmember?id=${sdata.userId}`
-      );
+const {handleSubmit,submitForm,register,errors}= useDailyMeal()
 
-      const getsubmite = {
-        ...sdata,
-        user: res.data[0],
-      };
-      console.log(getsubmite);
+const {data,error,loading}=useAsync(MemberServices.getAllMember)
+ 
 
-      axios
-        .post("http://localhost:4000/meal", getsubmite)
-        .then((res) => {
-          alert("Meal added successfully!");
-          setValue("userId", "");
-          setValue("meal", "");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {}
-  };
 
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/newmember")
-        .then((res) => {
-          setdata(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          seterror(err);
-          setLoading(false);
-        });
-    };
-
-    getdata();
-  }, []);
-
-  if (loading) {
-    return <div>Loading....</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
   return (
     <>
       <div className="mt-[30px]  px-[30px] md:px-0">
@@ -91,21 +33,21 @@ const AddMeal = () => {
                     htmlFor="meal"
                     className="font-jose text-lg text-white"
                   >
-                    Meal
+                    Meal Count
                   </label>
 
                   <input
                     type="number"
-                    name="meal"
+                    name="mealCount"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("meal")}
-                    placeholder="meal"
+                    {...register("mealCount")}
+                    placeholder="mealCount"
                   />
-                  <p className=" text-[#FF0303]"> {errors.meal?.message} </p>
+                  <p className=" text-[#FF0303]"> {errors.mealCount?.message} </p>
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="meal"
+                    htmlFor="date"
                     className="font-jose text-lg text-white"
                   >
                     Date
@@ -131,19 +73,22 @@ const AddMeal = () => {
 
                   <select
                     className="px-4 py-2 outline-none rounded"
-                    {...register("userId", {
+                    {...register("member", {
                       required: false,
                     })}
                   >
-                    {data?.map((item, i) => (
-                      <option key={i + 1} value={item.id}>
+                    { loading ? "Loading" :
+                    data?.data?.map((item, i) => (
+                      <option key={i + 1} value={item._id}>
                         {item.name}
                       </option>
                     ))}
                   </select>
                 </div>
 
-                <div>
+                
+              </div>
+              <div>
                   <button
                     className="my-3 flex
                  items-center justify-center w-[150px] text-white font-abc text-sm  bg-green2 p-2 rounded hover:bg-btnbg  duration-200 "
@@ -152,8 +97,9 @@ const AddMeal = () => {
                     submit
                   </button>
                 </div>
-              </div>
             </form>
+
+            
           </div>
         </div>
       </div>

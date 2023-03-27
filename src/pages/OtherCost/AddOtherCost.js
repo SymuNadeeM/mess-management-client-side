@@ -1,43 +1,10 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import useOtherCost from "../../hook/useOtherCost";
 
-const schema = yup.object().shape({
-  date: yup.string().required("Date should be required please"),
-  otherCostdetails: yup
-    .string()
-    .required("otherCostdetails should be required please"),
-  otherCostAmount: yup
-    .string()
-    .required("otherCostAmount should be required please"),
-});
 
 const AddOtherCost = () => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const submitForm = (sdata) => {
-    axios
-      .post(" http://localhost:4000/otherCost", sdata)
-      .then((res) => {
-        alert("Other Cost added successfully!");
-
-        setValue("date", "");
-        setValue("otherCostdetails", "");
-        setValue("otherCostAmount", "");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+ 
+  const {submitForm, register,handleSubmit,errors} = useOtherCost()
 
   return (
     <>
@@ -72,43 +39,63 @@ const AddOtherCost = () => {
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="otherCostdetails"
+                    htmlFor="costName"
                     className="font-jose text-lg text-white"
                   >
-                    other Cost details
+                    cost Name
                   </label>
                   <textarea
                     type="text"
-                    name="otherCostdetails"
+                    name="costName"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("otherCostdetails")}
-                    placeholder="other Cost details"
+                    {...register("costName")}
+                    placeholder="cost Name"
                     cols="30"
                     rows="6"
                   ></textarea>
 
                   <p className=" text-[#FF0303]">
-                    {errors.otherCostdetails?.message}{" "}
+                    {errors.costName?.message}{" "}
                   </p>
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="otherCostAmount"
+                    htmlFor="costPrice"
                     className="font-jose text-lg text-white"
                   >
-                    Cost Amount
+                    cost Price
                   </label>
 
                   <input
                     type="number"
-                    name="otherCostAmount"
+                    name="costPrice"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("otherCostAmount")}
+                    {...register("costPrice")}
                     placeholder="Amount"
                   />
                   <p className=" text-[#FF0303]">
                     {" "}
-                    {errors.otherCostAmount?.message}{" "}
+                    {errors.costPrice?.message}{" "}
+                  </p>
+                </div>
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label
+                    htmlFor="member"
+                    className="font-jose text-lg text-white"
+                  >
+                    cost Price
+                  </label>
+
+                  <input
+                    type="number"
+                    name="member"
+                    className=" px-4 py-2 outline-none rounded "
+                    {...register("member")}
+                    placeholder="Member"
+                  />
+                  <p className=" text-[#FF0303]">
+                   
+                    {errors.member?.message}
                   </p>
                 </div>
 

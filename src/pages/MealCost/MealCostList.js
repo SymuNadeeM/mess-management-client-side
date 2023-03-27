@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 
+import useAsync from "../../hook/useAsync";
+import BazarListServices from "../../services/BazarListServices";
+
 const MealCostList = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, seterror] = useState(null);
+
+   const {data,error,loading}=useAsync(BazarListServices.getAllBazarList)
 
   const handleDelete = (id) => {
     if (window.confirm("are you sure?")) {
@@ -14,28 +16,7 @@ const MealCostList = () => {
     window.location.reload();
   };
 
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/mealCost")
-        .then((res) => {
-          setData(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          seterror(err);
-          setLoading(false);
-        });
-    };
-    getdata();
-  }, []);
-
-  if (loading) {
-    return <div>Loading....</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
+  
   return (
     <>
       <div className="mt-[30px]   px-[30px] md:p-[10px]">
@@ -60,7 +41,8 @@ const MealCostList = () => {
             </tr>
           </thead>
           <tbody class=" mt-2 block md:table-row-group shadow-md">
-            {data?.map((items) => (
+            { loading ? "Loading..." :
+            data?.data?.map((items) => (
               <tr
                 class=" bg-white font-archivo border border-spacing-2  border-btnbg md:border-none block md:table-row"
                 key={items.id}
