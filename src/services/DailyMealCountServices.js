@@ -11,11 +11,11 @@ const DailyMealCountServices = {
   searchDailyMealCount: async (body) => {
     return requests.get('/dailyMealCounts', body);
   },
-  getSingleDailyMealCount: async (body) => {
-    return requests.get('/dailyMealCounts', body);
+  getSingleDailyMealCount: async (id) => {
+    return requests.get(`/dailyMealCounts/${id}`);
   },
-  singleUpdateDailyMealCount: async (body) => {
-    return requests.put('/dailyMealCounts', body);
+  singleUpdateDailyMealCount: async (id,body) => {
+    return requests.put(`/dailyMealCounts/${id}`, body);
   },
   singleDeleteDailyMealCount: async (id) => {
     return requests.delete(`/dailyMealCounts/${id}`);

@@ -1,9 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import PaidAmountServices from '../services/PaidAmountServices';
-const usePaidAmount = () => {
- 
+const usePaidAmount = (id) => {
+  let navigate = useNavigate();
   //add Amount
   const schema = yup.object().shape({
     member: yup.string().required("User name should be required please"),
@@ -22,15 +24,33 @@ const usePaidAmount = () => {
   const submitForm = async (data) => {
     console.log(data);
    try {
+      if(id){
+        const res = await PaidAmountServices.singleUpdatePaidAmount(id,data)
+        alert(res.message)
+        navigate("/money-list")
+      }else{
      const res = await PaidAmountServices.singleCreatePaidAmount(data)
      alert(res.message);
      setValue("amount", "");
      setValue("member", "");
+      }
    } catch (error) {
     console.log(error);
    }
   };
   
+
+  useEffect(()=>{
+  if(id){
+    (async ()=>{
+      const res = await PaidAmountServices.getSinglePaidAmount(id);
+      console.log(res.data);
+      setValue("amount", res?.data?.amount);
+     setValue("member", res?.data?.member);
+    })();
+  }
+  },[id,setValue])
+
 
   // Delete single items
   const handleDelete = async (id) => {

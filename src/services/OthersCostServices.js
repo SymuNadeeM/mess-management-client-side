@@ -17,8 +17,8 @@ const OthersCostServices = {
   singleUpdateOthersCost: async (body) => {
     return requests.put('/othersCosts', body);
   },
-  singleDeleteOthersCost: async (body) => {
-    return requests.delete ('/othersCosts', body);
+  singleDeleteOthersCost: async (id) => {
+    return requests.delete (`/othersCosts/${id}`);
   },
   
   

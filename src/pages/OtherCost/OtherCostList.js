@@ -1,7 +1,7 @@
-import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import useAsync from "../../hook/useAsync";
+import useOtherCost from "../../hook/useOtherCost";
 import OthersCostServices from "../../services/OthersCostServices";
 
 
@@ -9,14 +9,9 @@ const OtherCostList = () => {
 
   
   const {data,error,loading} = useAsync(OthersCostServices.getAllOthersCost)
+  const {handleDelete}= useOtherCost()
 
-
-  const handleDelete = (id) => {
-    if (window.confirm("are you sure?")) {
-      axios.delete(`http://localhost:4000/otherCost/${id}`);
-      window.location.reload();
-    }
-  };
+  
 
  
   return (
@@ -79,14 +74,14 @@ const OtherCostList = () => {
                   </span>
 
                   <button className=" bg-green2  text-white font-bold py-1 px-2 border border-blue-500 rounded">
-                    <Link to={`/edite-other-cost/${items.id}`}>
+                    <Link to={`/edite-other-cost/${items._id}`}>
                       {/* <OtherCostEdite /> */}
                       Edite
                     </Link>
                   </button>
 
                   <button
-                    onClick={() => handleDelete(items.id)}
+                    onClick={() => handleDelete(items._id)}
                     class=" ml-2 bg-btnbg  text-white font-bold py-1 px-2 border border-red-500 rounded"
                   >
                     Delete

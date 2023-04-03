@@ -11,11 +11,11 @@ const PaidAmountServices = {
   searchPaidAmount: async (body) => {
     return requests.get('/paidAmounts', body);
   },
-  getSinglePaidAmount: async (body) => {
-    return requests.get('/paidAmounts', body);
+  getSinglePaidAmount: async (id) => {
+    return requests.get(`/paidAmounts/${id}`);
   },
-  singleUpdatePaidAmount: async (body) => {
-    return requests.put('/paidAmounts', body);
+  singleUpdatePaidAmount: async (id,body) => {
+    return requests.put(`/paidAmounts/${id}`,body);
   },
   singleDeletePaidAmount: async (id) => {
     return requests.delete(`/paidAmounts/${id}`);

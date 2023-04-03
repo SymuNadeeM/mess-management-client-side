@@ -1,10 +1,13 @@
 import React from "react";
+import useAsync from "../../hook/useAsync";
 import useOtherCost from "../../hook/useOtherCost";
+import MemberServices from "../../services/MemberServices";
 
 
 const AddOtherCost = () => {
  
   const {submitForm, register,handleSubmit,errors} = useOtherCost()
+  const {data,error,loading}=useAsync(MemberServices.getAllMember)
 
   return (
     <>
@@ -80,23 +83,25 @@ const AddOtherCost = () => {
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="member"
+                    htmlFor="amount"
                     className="font-jose text-lg text-white"
                   >
-                    cost Price
+                    Name
                   </label>
 
-                  <input
-                    type="number"
-                    name="member"
-                    className=" px-4 py-2 outline-none rounded "
-                    {...register("member")}
-                    placeholder="Member"
-                  />
-                  <p className=" text-[#FF0303]">
-                   
-                    {errors.member?.message}
-                  </p>
+                  <select
+                    className="px-4 py-2 outline-none rounded"
+                    {...register("member", {
+                      required: false,
+                    })}
+                  >
+                    { loading ? "Loading" :
+                    data?.data?.map((item, i) => (
+                      <option key={i + 1} value={item._id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>

@@ -72,7 +72,7 @@ const {handleDelete} = useDailyMeal()
                   </span>
 
                   <button className=" bg-green2  text-white font-bold py-1 px-2 border border-blue-500 rounded">
-                    <Link to={`/edite-meal/${items.id}`}>
+                    <Link to={`/edite-meal/${items._id}`}>
                       {/* <OtherCostEdite /> */}
                       Edite
                     </Link>
