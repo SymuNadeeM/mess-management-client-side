@@ -1,104 +1,15 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import * as yup from "yup";
+import React from "react";
+import { useParams } from "react-router-dom";
+import useAsync from "../../hook/useAsync";
+import useBazarList from "../../hook/useBazarList";
+import MemberServices from "../../services/MemberServices";
 
-const schema = yup.object().shape({
-  userId: yup.string().required("User name should be required please"),
-  date: yup.string().required("Date should be required please"),
-  bzdetails: yup.string().required("bzdetails should be required please"),
-  bzcost: yup.string().required("bzcost should be required please"),
-});
 
 const MealcostEdite = () => {
-  let navigate = useNavigate();
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isLoading2, setIsLoading2] = useState(true);
-  const [error, setError] = useState(null);
-  const [error2, seterror2] = useState(null);
-  const [data, setdata] = useState([]);
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/newmember")
-        .then((res) => {
-          setdata(res.data);
-          setIsLoading2(false);
-        })
-        .catch((err) => {
-          seterror2(err);
-          setIsLoading2(false);
-        });
-    };
-
-    getdata();
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/mealCost/${id}`)
-      .then((res) => {
-        setIsLoading(false);
-        setValue("userId", res.data.userId);
-        setValue("date", res.data.date);
-        setValue("bzdetails", res.data.bzdetails);
-        setValue("bzcost", res.data.bzcost);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
-  }, [id, setValue]);
-
-  const submitForm = async (data) => {
-    try {
-      const res = await axios.get(
-        `http://localhost:4000/newmember?id=${data.userId}`
-      );
-      const getsubdata = {
-        ...data,
-        user: res.data[0],
-      };
-      console.log(getsubdata);
-      axios
-        .put(`http://localhost:4000/mealCost/${id}`, getsubdata)
-        .then((res) => {
-          console.log(res.data);
-          navigate("/meal-cost-list");
-          alert("Meal cost Edite successfully");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } catch (error) {}
-  };
-
-  if (isLoading2) {
-    return <div>Loading..</div>;
-  }
-  if (error2 != null) {
-    return <div>{error2}</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading..</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
+  const {register,handleSubmit,submitForm,errors} = useBazarList(id)
+  const {data,error,loading}=useAsync(MemberServices.getAllMember)
+  
 
   return (
     <>
@@ -133,41 +44,58 @@ const MealcostEdite = () => {
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="bzdetails"
+                    htmlFor="itemName"
                     className="font-jose text-lg text-white"
                   >
-                    Bazar Details
+                    item Name
                   </label>
                   <textarea
                     type="text"
-                    name="bzdetails"
+                    name="itemName"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("bzdetails")}
+                    {...register("itemName")}
                     placeholder="Bazar details"
                     cols="30"
                     rows="6"
                   ></textarea>
 
                   <p className=" text-[#FF0303]">
-                    {errors.bzdetails?.message}{" "}
+                    {errors.itemName?.message}{" "}
                   </p>
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="bzcost"
+                    htmlFor="itemQuantity"
                     className="font-jose text-lg text-white"
                   >
-                    Bazar Cost
+                   itemQuantity
                   </label>
 
                   <input
                     type="number"
-                    name="bzcost"
+                    name="itemQuantity"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("bzcost")}
-                    placeholder="Amount"
+                    {...register("itemQuantity")}
+                    placeholder="itemQuantity"
                   />
-                  <p className=" text-[#FF0303]"> {errors.bzcost?.message} </p>
+                  <p className=" text-[#FF0303]"> {errors.itemQuantity?.message} </p>
+                </div>
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label
+                    htmlFor="itemAmount"
+                    className="font-jose text-lg text-white"
+                  >
+                   itemAmount
+                  </label>
+
+                  <input
+                    type="number"
+                    name="itemAmount"
+                    className=" px-4 py-2 outline-none rounded "
+                    {...register("itemAmount")}
+                    placeholder="itemAmount"
+                  />
+                  <p className=" text-[#FF0303]"> {errors.itemAmount?.message} </p>
                 </div>
 
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
@@ -180,12 +108,14 @@ const MealcostEdite = () => {
 
                   <select
                     className="px-4 py-2 outline-none rounded"
-                    {...register("userId", {
+                    {...register("member", {
                       required: false,
                     })}
                   >
-                    {data.map((item, i) => (
-                      <option key={i + 1} value={item.id}>
+                    {
+                     loading ? " Loading" :                    
+                    data?.data?.map((item, i) => (
+                      <option key={i + 1} value={item._id}>
                         {item.name}
                       </option>
                     ))}

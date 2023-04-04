@@ -11,11 +11,11 @@ const BazarListServices = {
   searchBazarList: async (body) => {
     return requests.get('/bazarLists', body);
   },
-  getSingleBazarList: async (body) => {
-    return requests.get('/bazarLists', body);
+  getSingleBazarList: async (id) => {
+    return requests.get(`/bazarLists/${id}`);
   },
-  singleUpdateBazarListt: async (body) => {
-    return requests.put('/bazarLists', body);
+  singleUpdateBazarListt: async (id,body) => {
+    return requests.put(`/bazarLists/${id}`, body);
   },
   singleDeleteBazarList: async (id) => {
     return requests.delete(`/bazarLists/${id}`);

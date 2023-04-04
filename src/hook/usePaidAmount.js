@@ -46,7 +46,7 @@ const usePaidAmount = (id) => {
       const res = await PaidAmountServices.getSinglePaidAmount(id);
       console.log(res.data);
       setValue("amount", res?.data?.amount);
-     setValue("member", res?.data?.member);
+      setValue("member", res?.data?.member);
     })();
   }
   },[id,setValue])

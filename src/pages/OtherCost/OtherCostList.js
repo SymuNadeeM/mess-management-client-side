@@ -11,8 +11,6 @@ const OtherCostList = () => {
   const {data,error,loading} = useAsync(OthersCostServices.getAllOthersCost)
   const {handleDelete}= useOtherCost()
 
-  
-
  
   return (
     <>

@@ -79,7 +79,7 @@ const AddMealCost = () => {
                   />
                   <p className=" text-[#FF0303]"> {errors.itemQuantity?.message} </p>
                 </div>
-                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                {/* <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="unit"
                     className="font-jose text-lg text-white"
@@ -95,7 +95,7 @@ const AddMealCost = () => {
                     placeholder="unit"
                   />
                   <p className=" text-[#FF0303]"> {errors.unit?.message} </p>
-                </div>
+                </div> */}
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="itemAmount"

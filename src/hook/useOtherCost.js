@@ -1,11 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import OthersCostServices from "../services/OthersCostServices";
 
-const useOtherCost = () => {
+const useOtherCost = (id) => {
 
-  // const {id}=useAsync(OthersCostServices.singleDeleteOthersCost)
+  let navigate = useNavigate();
 
   const schema = yup.object().shape({
   date: yup.string().required("Date should be required please"),
@@ -31,17 +33,37 @@ const useOtherCost = () => {
 
   const submitForm = async (data) => {
     try {
+      if (id) {
+        const res = await OthersCostServices.singleUpdateOthersCost(id,data)
+        alert(res.message)
+        navigate("/other-cost-list")
+      }else{   
       const res = await OthersCostServices.singleCreateOthersCost(data)
       alert(res.message);
           setValue("date", "");
           setValue("member", "");
           setValue("costName", "");
           setValue("costPrice", "");
+        }
     } catch (error) {
       console.log(error);
     }
   };
  
+  useEffect(()=>{
+    if (id) {
+      (async()=>{
+         const res = await OthersCostServices.getSingleOthersCost(id)
+         console.log(res.data);
+         setValue("date", res?.data?.date);
+          setValue("member", res?.data?.member);
+          setValue("costName", res?.data?.costName);
+          setValue("costPrice", res?.data?.costPrice);
+      })();
+    }
+  },[id, setValue])
+  
+
 
   //Delete Single iteam
   const handleDelete = async (id) => {

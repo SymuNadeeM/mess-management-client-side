@@ -1,64 +1,17 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import * as yup from "yup";
+import React from "react";
+import { useParams } from "react-router-dom";
+import useAsync from "../../hook/useAsync";
+import useOtherCost from "../../hook/useOtherCost";
+import MemberServices from "../../services/MemberServices";
 
-const schema = yup.object().shape({
-  date: yup.string().required("Date should be required please"),
-  otherCostdetails: yup
-    .string()
-    .required("otherCostdetails should be required please"),
-  otherCostAmount: yup
-    .string()
-    .required("otherCostAmount should be required please"),
-});
+
 
 const OtherCostEdite = () => {
-  let navigate = useNavigate();
+
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/otherCost/${id}`)
-      .then((res) => {
-        setIsLoading(false);
-        setValue("date", res.data.date);
-        setValue("otherCostdetails", res.data.otherCostdetails);
-        setValue("otherCostAmount", res.data.otherCostAmount);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
-  }, [id, setValue]);
-
-  const submitForm = (data) => {
-    axios.put(`http://localhost:4000/otherCost/${id}`, data).then((res) => {
-      navigate("/other-cost-list");
-      alert("Other cost edited successfully!");
-    });
-    console.log(data);
-  };
-  if (isLoading) {
-    return <div>Loading..</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
+ const {handleSubmit,submitForm,register,errors} = useOtherCost(id)
+ const {data,error,loading}=useAsync(MemberServices.getAllMember)
 
   return (
     <>
@@ -93,28 +46,28 @@ const OtherCostEdite = () => {
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="otherCostdetails"
+                    htmlFor="costName"
                     className="font-jose text-lg text-white"
                   >
-                    other Cost details
+                    Cost Name
                   </label>
                   <textarea
                     type="text"
-                    name="otherCostdetails"
+                    name="costName"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("otherCostdetails")}
+                    {...register("costName")}
                     placeholder="other Cost details"
                     cols="30"
                     rows="6"
                   ></textarea>
 
                   <p className=" text-[#FF0303]">
-                    {errors.otherCostdetails?.message}{" "}
+                    {errors.costName?.message}{" "}
                   </p>
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="otherCostAmount"
+                    htmlFor="costPrice"
                     className="font-jose text-lg text-white"
                   >
                     Cost Amount
@@ -122,15 +75,37 @@ const OtherCostEdite = () => {
 
                   <input
                     type="number"
-                    name="otherCostAmount"
+                    name="costPrice"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("otherCostAmount")}
+                    {...register("costPrice")}
                     placeholder="Amount"
                   />
                   <p className=" text-[#FF0303]">
                     {" "}
-                    {errors.otherCostAmount?.message}{" "}
+                    {errors.costPrice?.message}{" "}
                   </p>
+                </div>
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label
+                    htmlFor="amount"
+                    className="font-jose text-lg text-white"
+                  >
+                    Name
+                  </label>
+
+                  <select
+                    className="px-4 py-2 outline-none rounded"
+                    {...register("member", {
+                      required: false,
+                    })}
+                  >
+                    { loading ? "Loading" :
+                    data?.data?.map((item, i) => (
+                      <option key={i + 1} value={item._id}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>

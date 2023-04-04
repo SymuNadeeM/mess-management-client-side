@@ -11,11 +11,11 @@ const OthersCostServices = {
   searchOthersCost: async (body) => {
     return requests.get('/othersCosts', body);
   },
-  getSingleOthersCost: async (body) => {
-    return requests.get('/othersCosts', body);
+  getSingleOthersCost: async (id) => {
+    return requests.get(`/othersCosts/${id}`);
   },
-  singleUpdateOthersCost: async (body) => {
-    return requests.put('/othersCosts', body);
+  singleUpdateOthersCost: async (id,body) => {
+    return requests.put(`/othersCosts/${id}`, body);
   },
   singleDeleteOthersCost: async (id) => {
     return requests.delete (`/othersCosts/${id}`);
