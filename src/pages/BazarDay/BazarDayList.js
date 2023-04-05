@@ -95,6 +95,13 @@ const BazarDayList = () => {
             </tr>
           </tbody>
         </table>
+        <button className="mt-5 bg-green2  text-white font-bold py-1 px-2 border border-blue-500 rounded">
+        {/* {`/edite-bazar-day/${items._id}`} */}
+                    <Link to="/edite-bazar-day">
+                      {/* <OtherCostEdite /> */}
+                      Edite
+                    </Link>
+                  </button>
       </div>
     </>
   );

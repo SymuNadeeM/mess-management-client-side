@@ -1,64 +1,13 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import React from "react";
+import useAsync from "../../hook/useAsync";
+import useBazarDay from "../../hook/useBazarDay";
+import MemberServices from "../../services/MemberServices";
 
-const schema = yup.object().shape({
-  userId: yup.string().required("User name should be required please"),
-  bazardate: yup.string().required("bazardate should be required please"),
-});
+
 
 const AddBazarDay = () => {
-  const [data, setdata] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, seterror] = useState(null);
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const submitForm = (sdata) => {
-    axios
-      .post("http://localhost:4000/Bazarday", sdata)
-      .then((res) => {
-        alert("Added bazar days successfully!");
-        setValue("userId", "");
-        setValue("bazardate", "");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    const getdata = async () => {
-      await axios
-        .get("http://localhost:4000/newmember")
-        .then((res) => {
-          setdata(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          seterror(err);
-          setLoading(false);
-        });
-    };
-
-    getdata();
-  }, []);
-
-  if (loading) {
-    return <div>Loading....</div>;
-  }
-  if (error != null) {
-    return <div>{error}</div>;
-  }
+ const {handleSubmit,submitForm,register,errors}= useBazarDay()
+ const {data,loading,error}=useAsync(MemberServices.getAllMember)
   return (
     <>
       <div className="mt-[30px]  px-[30px] md:px-0">
@@ -83,12 +32,13 @@ const AddBazarDay = () => {
 
                   <select
                     className="px-4 py-2 outline-none rounded"
-                    {...register("userId", {
+                    {...register("member", {
                       required: false,
                     })}
                   >
-                    {data?.map((item, i) => (
-                      <option key={i + 1} value={item.id}>
+                    { loading ?  "loading":
+                    data?.data?.map((item, i) => (
+                      <option key={i + 1} value={item._id}>
                         {item.name}
                       </option>
                     ))}
@@ -96,13 +46,30 @@ const AddBazarDay = () => {
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="bazardate"
+                    htmlFor="countOfBazar"
+                    className="font-jose text-lg text-white"
+                  >
+                    count Of Bazar
+                  </label>
+
+                  <input
+                    type="number"
+                    name="countOfBazar"
+                    className=" px-4 py-2 outline-none rounded "
+                    {...register("countOfBazar")}
+                    placeholder="countOfBazar"
+                  />
+                  <p className=" text-[#FF0303]"> {errors.countOfBazar?.message} </p>
+                </div>
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label
+                    htmlFor="dayName"
                     className="font-jose text-lg text-white"
                   >
                     Date
                   </label>
 
-                  <select {...register("bazardate")}>
+                  <select {...register("dayName")}>
                     <option value="one">1</option>
                     <option value="one">2</option>
                     <option value="one">3</option>
@@ -136,8 +103,8 @@ const AddBazarDay = () => {
                     <option value="one">31</option>
                   </select>
                   <p className=" text-[#FF0303]">
-                    {" "}
-                    {errors.bazardate?.message}{" "}
+                    
+                    {errors.dayName?.message}
                   </p>
                 </div>
 

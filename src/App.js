@@ -10,13 +10,14 @@ import AddMember from "./pages/Member/AddMember";
 import MoneyEdite from "./pages/AddMoney/MoneyEdite";
 import AddBazarDay from "./pages/BazarDay/AddBazarDay";
 import BazarDayList from "./pages/BazarDay/BazarDayList";
+import EditeBazarDay from "./pages/BazarDay/EditeBazarDay";
 import DashBoard from "./pages/DashBoard";
 import AddMeal from "./pages/Meal/AddMeal";
 import MealEdite from "./pages/Meal/MealEdite";
 import MealList from "./pages/Meal/MealList";
 import AddMealCost from "./pages/MealCost/AddMealCost";
-import MealcostEdite from "./pages/MealCost/MealcostEdite";
 import MealCostList from "./pages/MealCost/MealCostList";
+import MealcostEdite from "./pages/MealCost/MealcostEdite";
 import MemberEdite from "./pages/Member/MemberEdite";
 import MembersList from "./pages/Member/MembersList";
 import AddOtherCost from "./pages/OtherCost/AddOtherCost";
@@ -47,7 +48,7 @@ function App() {
           {/* bazarDAy */}
 
           <Route path="/add-bazar-day" element={<AddBazarDay />} />
-          {/* <Route path="/edite-bazar-day/:id" element={<AddBazarDay />} /> */}
+          <Route path="/edite-bazar-day" element={<EditeBazarDay/>} />
           <Route path="/bazar-day-list" element={<BazarDayList />} />
 
           {/* meal Cost */}
