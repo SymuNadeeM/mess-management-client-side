@@ -24,7 +24,7 @@ const Layout = () => {
         </div>
         <div className="hidden md:flex">
           <Link
-            to="#"
+            to="/home"
             className="ml-6   font-archivo2 text-lg font-bold  text-btnbgs"
           >
             SUN_HOSTEL

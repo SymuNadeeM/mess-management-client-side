@@ -12,6 +12,7 @@ import AddBazarDay from "./pages/BazarDay/AddBazarDay";
 import BazarDayList from "./pages/BazarDay/BazarDayList";
 import EditeBazarDay from "./pages/BazarDay/EditeBazarDay";
 import DashBoard from "./pages/DashBoard";
+import Home from "./pages/Home";
 import AddMeal from "./pages/Meal/AddMeal";
 import MealEdite from "./pages/Meal/MealEdite";
 import MealList from "./pages/Meal/MealList";
@@ -61,6 +62,7 @@ function App() {
           <Route path="/edite-other-cost/:id" element={<OtherCostEdite />} />
           <Route path="/other-cost-list" element={<OtherCostList />} />
         </Route>
+        <Route path="/home" element={<Home />} />
       </Routes>
     </>
   );

@@ -12,12 +12,13 @@ module.exports = {
         archivo2: ["Archivo Narrow", "sans-serif"],
       },
       backgroundImage: {
-        "hero-pattern": "url('/src/Images/ding2.jpg')",
+        
       },
       colors: {
         current: "currentColor",
         maintext: "#000000de",
         bgdshb: "#222a45",
+        food:"#FEAA1A",
         icon: "#8990a2",
         black: "#000000",
         white: "#fff",
@@ -29,7 +30,6 @@ module.exports = {
         btnbg: "#dd2476",
         text1: "#73777B",
         text2: "#181D31",
-
         dtext1: "#B2B2B2",
       },
     },
