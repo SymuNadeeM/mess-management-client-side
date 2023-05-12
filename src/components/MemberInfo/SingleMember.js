@@ -5,16 +5,16 @@ import proimg from "../../Images/formal2.png";
 const SingleMember = () => {
   return (
     <>
-      <div className="bg-[#C0DBEA] dark:bg-blackbg   shadow flex flex-col items-center justify-center ">
-        <div className=" mt-2 flex items-center justify-center">
+      <div className="  rounded-xl shadow flex flex-col items-center justify-center ">
+        <div className=" mt-1 flex items-center justify-center">
           <img
             src={proimg}
             alt=""
-            className=" w-[200px] bg-white h-[200px] rounded-xl shadow-lg"
+            className=" w-[150px] bg-white h-[150px] rounded-xl shadow-lg"
           />
         </div>
 
-        <div className="mt-[15px]  text-center">
+        <div className="mt-[10px]  text-center">
           <div className=" space-y-2">
             <h2 className=" text-2xl font-bold  font-abc text-[#181D31] dark:text-[#ffff]">
               Md. Symun Majumdar
@@ -45,7 +45,7 @@ const SingleMember = () => {
             </div>
           </div>
           {/* details */}
-          <div className="my-[15px] md:px-2 p-4  flex flex-col  items-start bg-[#fff]   dark:bg-black3 ">
+          <div className="my-[10px] md:px-2 p-4  flex flex-col  items-start bg-[#fff]    dark:bg-black3 ">
             <div className="my-3 flex items-center justify-center gap-2">
               <div className="w-[40px] h-[40px] bg-[#fff] dark:bg-black flex items-center justify-center rounded-md text-[#538dd7] hover:bg-btnbg hover:dark:bg-btnbg duration-200 hover:text-[#fff] shadow">
                 <i class="fa-solid fa-mobile-screen"></i>

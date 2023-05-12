@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import user from "../Images/formal2.png";
 
 const Navbar = () => {
@@ -24,9 +24,9 @@ const Navbar = () => {
         <div className="hidden md:flex">
           <Link
             to="/home"
-            className="ml-6   font-archivo2 text-lg font-bold  text-btnbgs"
+            className="ml-4  inline-block font-archivo2 text-lg font-bold"
           >
-            SUN_HOSTEL
+            MESS
           </Link>
         </div>
         <div className="flex container items-center mx-auto px-6 text-purple-600 justify-between">
@@ -41,7 +41,7 @@ const Navbar = () => {
           <div className="flex items-center justify-around space-x-6">
             <div onClick={darkClick}>
               {!dark ? (
-                <i className="fa-regular fa-lightbulb ring-2 p-1 rounded-full  ring-pink-300 ring-inset"></i>
+                <i className="fa-regular fa-lightbulb"></i>
               ) : (
                 <i className="fa-solid fa-moon"></i>
               )}
