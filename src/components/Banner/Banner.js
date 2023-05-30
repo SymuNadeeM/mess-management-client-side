@@ -11,7 +11,7 @@ const Banner = () => {
             <div className="flex items-center justify-center gap-2">
               <i class="fa-solid fa-sack-dollar text-green2"></i>
               <h3>
-                Mess Balance--{" "}
+                Mess Balance--
                 <strong className=" text-green">1500 Taka</strong>{" "}
               </h3>
             </div>

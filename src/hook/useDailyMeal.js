@@ -6,9 +6,7 @@ import * as yup from "yup";
 import DailyMealCountServices from "../services/DailyMealCountServices";
 
 const useDailyMeal = (id) => {
- 
-  let navigate = useNavigate()
-
+  let navigate = useNavigate();
 
   //add meal
   const schema = yup.object().shape({
@@ -16,7 +14,6 @@ const useDailyMeal = (id) => {
     mealCount: yup.string().required("Meal should be required please"),
     date: yup.string().required("Date should be required please"),
   });
-
 
   const {
     register,
@@ -28,57 +25,55 @@ const useDailyMeal = (id) => {
   });
 
   const submitForm = async (data) => {
-
     try {
-       if(id){
-        const res = await DailyMealCountServices.singleUpdateDailyMealCount(id,data)
-        alert(res.message)
-        navigate("/meal-list")
-       }else{
-        const res = await DailyMealCountServices.singleCreateDailyMealCount(data)
+      if (id) {
+        const res = await DailyMealCountServices.singleUpdateDailyMealCount(
+          id,
+          data
+        );
+        alert(res.message);
+        navigate("/meal-list");
+      } else {
+        const res = await DailyMealCountServices.singleCreateDailyMealCount(
+          data
+        );
         alert(res.message);
         setValue("member", "");
         setValue("mealCount", "");
         setValue("date", "");
-       }   
-      
+      }
     } catch (error) {
-       console.log(error);
+      console.log(error);
     }
   };
 
-
-  useEffect(()=>{
-    if(id){
-      (async ()=>{
-        const res = await DailyMealCountServices.getSingleDailyMealCount(id)
+  useEffect(() => {
+    if (id) {
+      (async () => {
+        const res = await DailyMealCountServices.getSingleDailyMealCount(id);
         console.log(res.data);
         setValue("member", res?.data?.member);
         setValue("mealCount", res?.data?.mealCount);
         setValue("date", res?.data?.date);
       })();
     }
-    },[id,setValue])
+  }, [id, setValue]);
 
-
-//Delete items
+  //Delete items
   const handleDelete = async (id) => {
     console.log(id);
- try {
-  if (window.confirm("are you sure?")){
-  const res = await DailyMealCountServices.singleDeleteDailyMealCount(id)
-  alert(res.message)
-  window.location.reload();
- }
- } catch (error) {
-  console.log(error);
- }
-
+    try {
+      if (window.confirm("are you sure?")) {
+        const res = await DailyMealCountServices.singleDeleteDailyMealCount(id);
+        alert(res.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-
-  return {submitForm,errors,handleSubmit,register,handleDelete}
-   
+  return { submitForm, errors, handleSubmit, register, handleDelete };
 };
 
 export default useDailyMeal;

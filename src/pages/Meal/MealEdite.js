@@ -4,20 +4,17 @@ import useAsync from "../../hook/useAsync";
 import useDailyMeal from "../../hook/useDailyMeal";
 import MemberServices from "../../services/MemberServices";
 
-
-
 const MealEdite = () => {
-  
-  const {id} = useParams()
-  const{ register,handleSubmit,submitForm,errors}=useDailyMeal(id)
-  const {data,error,loading}=useAsync(MemberServices.getAllMember)
- 
+  const { id } = useParams();
+  const { register, handleSubmit, submitForm, errors } = useDailyMeal(id);
+  const { data, error, loading } = useAsync(MemberServices.getAllMember);
+
   return (
     <>
       <div className="mt-[30px]  px-[30px] md:px-0">
         <div className="flex items-center my-4 gap-2">
           <i className="fa-solid fa-sack-dollar text-2xl text-green"></i>
-          <h1 className=" text-[#40513B] text-2xl font-abc">Add Meal</h1>
+          <h1 className=" text-[#40513B] text-2xl font-abc">Edite Meal</h1>
         </div>
         <div className="flex items-center justify-center">
           <div className="w-full md:w-1/2 ">
@@ -41,7 +38,10 @@ const MealEdite = () => {
                     {...register("mealCount")}
                     placeholder="mealCount"
                   />
-                  <p className=" text-[#FF0303]"> {errors.mealCount?.message} </p>
+                  <p className=" text-[#FF0303]">
+                    {" "}
+                    {errors.mealCount?.message}{" "}
+                  </p>
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
@@ -75,12 +75,13 @@ const MealEdite = () => {
                       required: false,
                     })}
                   >
-                    { loading ? "Loading" : 
-                    data?.data?.map((item, i) => (
-                      <option key={i + 1} value={item._id}>
-                        {item.name}
-                      </option>
-                    ))}
+                    {loading
+                      ? "Loading"
+                      : data?.data?.map((item, i) => (
+                          <option key={i + 1} value={item._id}>
+                            {item.name}
+                          </option>
+                        ))}
                   </select>
                 </div>
 

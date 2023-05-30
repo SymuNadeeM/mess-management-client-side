@@ -23,7 +23,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex">
           <Link
-            to="/home"
+            to="/"
             className="ml-4  inline-block font-archivo2 text-lg font-bold"
           >
             MESS

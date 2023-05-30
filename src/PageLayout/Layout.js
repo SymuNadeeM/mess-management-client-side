@@ -176,9 +176,10 @@ const Layout = () => {
                 className="flex px-6 py-3 items-center text-bold font-semibold 
                duration-150"
               >
-                <i className="fa-solid fa-file-invoice-dollar text-icon"></i>
+                <i className="fa-solid fa-clipboard-list text-icon"></i>
+
                 <Link className="px-4 text-bold" to="meal-cost-list">
-                  Meal Cost
+                  Bazar List
                 </Link>
               </div>
               <div
@@ -196,10 +197,14 @@ const Layout = () => {
                   className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-200 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm  hover:text-black  bg-btnbg hover:bg-green text-white focus:shadow-outline-purple"
                   type="button"
                 >
-                  Create account
-                  <span className="ml-2" aria-hidden="true">
-                    +
-                  </span>
+                  {" "}
+                  <Link to="/add-member">
+                    {" "}
+                    Create account
+                    <span className="ml-2" aria-hidden="true">
+                      +
+                    </span>
+                  </Link>
                 </button>
               </div>
             </div>
@@ -208,7 +213,7 @@ const Layout = () => {
         {/* ********* END LARGE ******* */}
 
         {/* ********* OUT-LET ******* */}
-        <div className="w-full md:w-5/6  mt-[30px] ml-[20px]">
+        <div className="w-full md:w-5/6  my-[30px] ml-[20px] mr-[8px]">
           <Outlet />
         </div>
       </div>

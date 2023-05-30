@@ -11,7 +11,8 @@ import MoneyEdite from "./pages/AddMoney/MoneyEdite";
 import AddBazarDay from "./pages/BazarDay/AddBazarDay";
 import BazarDayList from "./pages/BazarDay/BazarDayList";
 import EditeBazarDay from "./pages/BazarDay/EditeBazarDay";
-import DashBoard from "./pages/DashBoard";
+
+import DashBoard from "./pages/DashBoard/DashBoard";
 import Home from "./pages/Home";
 import AddMeal from "./pages/Meal/AddMeal";
 import MealEdite from "./pages/Meal/MealEdite";
@@ -30,7 +31,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<DashBoard />} />
+          <Route path="/" element={<DashBoard />} />
+          <Route path="/dashboard" element={<DashBoard />} />
           {/* member */}
           <Route path="/add-member" element={<AddMember />} />
           <Route path="/edit-member/:id" element={<MemberEdite />} />
@@ -49,7 +51,7 @@ function App() {
           {/* bazarDAy */}
 
           <Route path="/add-bazar-day" element={<AddBazarDay />} />
-          <Route path="/edite-bazar-day" element={<EditeBazarDay/>} />
+          <Route path="/edite-bazar-day/:id" element={<EditeBazarDay />} />
           <Route path="/bazar-day-list" element={<BazarDayList />} />
 
           {/* meal Cost */}

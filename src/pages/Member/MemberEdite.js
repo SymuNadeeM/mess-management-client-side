@@ -4,9 +4,8 @@ import useMember from "../../hook/useMember";
 
 const MemberEdite = () => {
   const { id } = useParams();
-  
-  const {register,handleSubmit,submitForm,errors} = useMember(id)
 
+  const { register, handleSubmit, submitForm, errors } = useMember(id);
 
   return (
     <>
@@ -99,6 +98,38 @@ const MemberEdite = () => {
                   ></textarea>
                   <p className=" text-[#FF0303]"> {errors.address?.message} </p>
                 </div> */}
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label htmlFor="permanentaddress" className=" font-jose">
+                    permanent address
+                  </label>
+                  <input
+                    type="permanentaddress"
+                    name="permanentaddress"
+                    className=" px-4 py-2 outline-none rounded "
+                    {...register("permanentaddress")}
+                    placeholder="permanent address"
+                  />
+                  <p className=" text-[#FF0303]">
+                    {" "}
+                    {errors.permanentaddress?.message}{" "}
+                  </p>
+                </div>
+                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
+                  <label htmlFor="bloodgroup" className=" font-jose">
+                    blood group
+                  </label>
+                  <input
+                    type="bloodgroup"
+                    name="bloodgroup"
+                    className=" px-4 py-2 outline-none rounded "
+                    {...register("bloodgroup")}
+                    placeholder="blood group"
+                  />
+                  <p className=" text-[#FF0303]">
+                    {" "}
+                    {errors.bloodgroup?.message}{" "}
+                  </p>
+                </div>
               </div>
 
               <div

@@ -4,12 +4,10 @@ import useAsync from "../../hook/useAsync";
 import useBazarList from "../../hook/useBazarList";
 import MemberServices from "../../services/MemberServices";
 
-
 const MealcostEdite = () => {
   const { id } = useParams();
-  const {register,handleSubmit,submitForm,errors} = useBazarList(id)
-  const {data,error,loading}=useAsync(MemberServices.getAllMember)
-  
+  const { register, handleSubmit, submitForm, errors } = useBazarList(id);
+  const { data, error, loading } = useAsync(MemberServices.getAllMember);
 
   return (
     <>
@@ -44,48 +42,32 @@ const MealcostEdite = () => {
                 </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
-                    htmlFor="itemName"
+                    htmlFor="itemDescription"
                     className="font-jose text-lg text-white"
                   >
                     item Name
                   </label>
                   <textarea
                     type="text"
-                    name="itemName"
+                    name="itemDescription"
                     className=" px-4 py-2 outline-none rounded "
-                    {...register("itemName")}
+                    {...register("itemDescription")}
                     placeholder="Bazar details"
                     cols="30"
                     rows="6"
                   ></textarea>
 
                   <p className=" text-[#FF0303]">
-                    {errors.itemName?.message}{" "}
+                    {errors.itemDescription?.message}{" "}
                   </p>
                 </div>
-                <div className="w-full md:w-3/4 flex flex-col  space-y-1">
-                  <label
-                    htmlFor="itemQuantity"
-                    className="font-jose text-lg text-white"
-                  >
-                   itemQuantity
-                  </label>
 
-                  <input
-                    type="number"
-                    name="itemQuantity"
-                    className=" px-4 py-2 outline-none rounded "
-                    {...register("itemQuantity")}
-                    placeholder="itemQuantity"
-                  />
-                  <p className=" text-[#FF0303]"> {errors.itemQuantity?.message} </p>
-                </div>
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="itemAmount"
                     className="font-jose text-lg text-white"
                   >
-                   itemAmount
+                    itemAmount
                   </label>
 
                   <input
@@ -95,7 +77,10 @@ const MealcostEdite = () => {
                     {...register("itemAmount")}
                     placeholder="itemAmount"
                   />
-                  <p className=" text-[#FF0303]"> {errors.itemAmount?.message} </p>
+                  <p className=" text-[#FF0303]">
+                    {" "}
+                    {errors.itemAmount?.message}{" "}
+                  </p>
                 </div>
 
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
@@ -112,13 +97,13 @@ const MealcostEdite = () => {
                       required: false,
                     })}
                   >
-                    {
-                     loading ? " Loading" :                    
-                    data?.data?.map((item, i) => (
-                      <option key={i + 1} value={item._id}>
-                        {item.name}
-                      </option>
-                    ))}
+                    {loading
+                      ? " Loading"
+                      : data?.data?.map((item, i) => (
+                          <option key={i + 1} value={item._id}>
+                            {item.name}
+                          </option>
+                        ))}
                   </select>
                 </div>
 

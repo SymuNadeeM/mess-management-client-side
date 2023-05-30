@@ -1,9 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import MemberServices from '../services/MemberServices';
+import MemberServices from "../services/MemberServices";
 
 const useMember = (id) => {
   let navigate = useNavigate();
@@ -12,10 +12,14 @@ const useMember = (id) => {
     name: yup.string().required("Full Name should be required please"),
     phone: yup.number().positive().integer().required(),
     email: yup.string().required("Email should be required please"),
-    // password: yup.string().required(id ? false :"password should be required please"),  
+    permanentaddress: yup
+      .string()
+      .required("permanentaddress should be required please"),
+    bloodgroup: yup.string().required("bloodgroup should be required please"),
+    // password: yup.string().required(id ? false :"password should be required please"),
   });
 
-  //Add member 
+  //Add member
   const {
     register,
     handleSubmit,
@@ -27,10 +31,10 @@ const useMember = (id) => {
 
   // handle form submit
   const submitForm = async (data) => {
-    console.log("data ===>",data);
+    console.log("data ===>", data);
     try {
       if (id) {
-        const res = await MemberServices.singleUpdateMember(id,data);
+        const res = await MemberServices.singleUpdateMember(id, data);
         alert(res.message);
         navigate("/members-list");
       } else {
@@ -40,8 +44,9 @@ const useMember = (id) => {
         setValue("phone", "");
         setValue("email", "");
         setValue("password", "");
+        setValue("permanentaddress", "");
+        setValue("bloodgroup", "");
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -51,28 +56,30 @@ const useMember = (id) => {
   const handleDelete = async (id) => {
     try {
       if (window.confirm("are you sure?")) {
-        const res = await MemberServices.singleDeleteMember(id)       
-        alert(res.message)
+        const res = await MemberServices.singleDeleteMember(id);
+        alert(res.message);
         window.location.reload();
       }
     } catch (error) {
       console.log(error);
-    }  
+    }
   };
 
   useEffect(() => {
     if (id) {
       (async () => {
         const res = await MemberServices.getSingleMember(id);
-        console.log("res",res.data);
+        console.log("res", res.data);
         setValue("name", res?.data?.name);
         setValue("phone", res?.data?.phone);
         setValue("email", res?.data?.email);
+        setValue("permanentaddress", res?.data?.permanentaddress);
+        setValue("bloodgroup", res?.data?.bloodgroup);
       })();
     }
-  },[id,setValue]) 
-  
-  return {register, handleSubmit, handleDelete, submitForm, errors}
+  }, [id, setValue]);
+
+  return { register, handleSubmit, handleDelete, submitForm, errors };
 };
 
 export default useMember;
