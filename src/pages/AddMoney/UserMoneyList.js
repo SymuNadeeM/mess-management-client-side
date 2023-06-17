@@ -72,9 +72,10 @@ const UserMoneyList = () => {
                     </td>
                   </tr>
                 ))}
-            <tr>
-              <td>Total :</td>
-              <td>{data.amount}Tk</td>
+            <tr className=" bg-[#FFECEC]  font-archivo">
+              <td className="md:p-2">Total :</td>
+              <td className="md:p-2">{data.amount}Tk</td>
+              <td></td>
             </tr>
           </tbody>
         </table>

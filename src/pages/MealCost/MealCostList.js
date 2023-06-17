@@ -8,6 +8,8 @@ const MealCostList = () => {
   const { data, error, loading } = useAsync(BazarListServices.getAllBazarList);
   const { handleDelete } = useBazarList();
 
+  console.log("data ======>", data);
+
   return (
     <>
       <div className="mt-[30px]   px-[30px] md:p-[10px]">
@@ -87,6 +89,13 @@ const MealCostList = () => {
                     </td>
                   </tr>
                 ))}
+            <tr className=" bg-[#FFECEC]  font-archivo">
+              <td></td>
+              <td className="md:p-2">Total :</td>
+              <td className="md:p-2">{data.amount}Tk</td>
+              <td></td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </div>

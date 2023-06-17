@@ -1,6 +1,6 @@
 import React from "react";
 
-const Summary = () => {
+const DashBordSummary = () => {
   return (
     <div className="mt-4  grid grid-cols-2 md:grid-cols-4  lg:grid-cols-5 gap-3">
       <div className=" bg-[#025464] rounded-md border flex flex-col justify-center items-center p-4">
@@ -20,7 +20,7 @@ const Summary = () => {
       </div>
       <div className=" bg-[#0E8388] rounded-md border flex flex-col justify-center items-center p-4">
         <i class="fa-solid fa-yin-yang text-green2 text-xl"></i>
-        <h3 className=" text-lg font-abc text-white">Total Meal Cost</h3>
+        <h3 className=" text-lg font-abc text-white">Total Bazar Cost</h3>
         <h1 className=" text-xl font-Robbi text-white">
           1500 <span className=" text-sm text-yellow-300">Tk</span>
         </h1>
@@ -41,4 +41,4 @@ const Summary = () => {
   );
 };
 
-export default Summary;
+export default DashBordSummary;
