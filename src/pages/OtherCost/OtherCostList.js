@@ -57,7 +57,7 @@ const OtherCostList = () => {
                       <span className="inline-block w-1/3 md:hidden  font-bold">
                         Amonut :
                       </span>
-                      <td>{items.costPrice} Taka </td>
+                      <td>{items.costPrice} Tk </td>
                     </td>
                     <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                       <span className="inline-block w-1/3 md:hidden  font-bold">
@@ -86,6 +86,13 @@ const OtherCostList = () => {
                     </td>
                   </tr>
                 ))}
+            <tr className=" bg-[#FFECEC]  font-archivo">
+              <td></td>
+              <td className="md:p-2">Total :</td>
+              <td className="md:p-2">{data.amount}Tk</td>
+              <td></td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </div>

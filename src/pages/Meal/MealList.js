@@ -30,10 +30,10 @@ const MealList = () => {
         <table className="min-w-full border-collapse block md:table">
           <thead className="block md:table-header-group">
             <tr className=" bg-[#faf7f7] font-archivo  text-text2    block md:table-row absolute -top-full md:top-auto -left-full md:left-auto shadow-md text-sm  md:relative ">
-              <th className="  p-2 text-left block md:table-cell">Date</th>
-              <th className=" p-2 text-left block md:table-cell">Meal</th>
               <th className=" p-2 text-left block md:table-cell">Name</th>
-              <th className=" p-2 text-left block md:table-cell">Action</th>
+
+              <th className=" p-2 text-left block md:table-cell">Meal</th>
+              {/* <th className=" p-2 text-left block md:table-cell">Action</th> */}
             </tr>
           </thead>
           <tbody className=" mt-2 block md:table-row-group shadow-md">
@@ -46,9 +46,9 @@ const MealList = () => {
                   >
                     <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                       <span className="inline-block w-1/3 md:hidden  font-bold">
-                        Date
+                        Name:
                       </span>
-                      <td>{new Date(items?.date).toLocaleDateString()}</td>
+                      <td>{items?.member?.name} </td>
                     </td>
                     <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                       <span className="inline-block w-1/3 md:hidden  font-bold">
@@ -56,20 +56,15 @@ const MealList = () => {
                       </span>
                       <td>{items.mealCount}</td>
                     </td>
-                    <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
-                      <span className="inline-block w-1/3 md:hidden  font-bold">
-                        Name:
-                      </span>
-                      <td>{items?.member?.name} </td>
-                    </td>
-                    <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
+
+                    {/* <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
                       <span className="inline-block w-1/3 md:hidden font-bold">
                         Actions
                       </span>
 
                       <button className=" bg-green2  text-white font-bold py-1 px-2 border border-blue-500 rounded">
                         <Link to={`/edite-meal/${items._id}`}>
-                          {/* <OtherCostEdite /> */}
+                          
                           Edite
                         </Link>
                       </button>
@@ -80,9 +75,13 @@ const MealList = () => {
                       >
                         Delete
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                 ))}
+            <tr className=" bg-[#FFECEC]  font-archivo">
+              <td className="md:p-2">Total Meal:</td>
+              <td className="md:p-2">{data.mealCount}</td>
+            </tr>
           </tbody>
         </table>
       </div>

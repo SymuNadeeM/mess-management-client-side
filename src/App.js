@@ -13,7 +13,7 @@ import BazarDayList from "./pages/BazarDay/BazarDayList";
 import EditeBazarDay from "./pages/BazarDay/EditeBazarDay";
 
 import DashBoard from "./pages/DashBoard/DashBoard";
-import Home from "./pages/Home";
+
 import AddMeal from "./pages/Meal/AddMeal";
 import MealEdite from "./pages/Meal/MealEdite";
 import MealList from "./pages/Meal/MealList";
@@ -25,6 +25,8 @@ import MembersList from "./pages/Member/MembersList";
 import AddOtherCost from "./pages/OtherCost/AddOtherCost";
 import OtherCostEdite from "./pages/OtherCost/OtherCostEdite";
 import OtherCostList from "./pages/OtherCost/OtherCostList";
+
+import SummaryList from "./Componets/SummaryList";
 
 function App() {
   return (
@@ -63,8 +65,9 @@ function App() {
           <Route path="/add-other-cost" element={<AddOtherCost />} />
           <Route path="/edite-other-cost/:id" element={<OtherCostEdite />} />
           <Route path="/other-cost-list" element={<OtherCostList />} />
+
+          <Route path="/summary" element={<SummaryList />} />
         </Route>
-        <Route path="/home" element={<Home />} />
       </Routes>
     </>
   );
