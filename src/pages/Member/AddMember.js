@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useMember from "../../hook/useMember";
 
 const AddMember = () => {
@@ -7,9 +8,13 @@ const AddMember = () => {
   return (
     <>
       <div className="m-[30px]  px-[30px] md:px-0">
-        <div className="flex items-center my-4 gap-2">
+        <div className="flex items-center">
           <i class="fa-solid fa-user-plus text-2xl text-green"></i>
-          <h1 className=" text-[#40513B] text-2xl font-abc">Add New Member</h1>
+          <h1 className="ml-2 text-[#40513B] text-2xl font-abc">Add New Member</h1>
+        </div>
+        <div className="">
+        <i class="fa-solid fa-arrow-left text-sm "></i>
+            <Link to="/members-list" className="ml-1 text-sm">Back MembersList</Link>
         </div>
         <div className="flex items-center justify-center">
           <div className="w-full md:w-1/2 ">
