@@ -8,7 +8,6 @@ const MealList = () => {
   const { data, error, loading } = useAsync(
     DailyMealCountServices.getAllDailyMealCount
   );
-  console.log(data);
 
   const { handleDelete } = useDailyMeal();
 
