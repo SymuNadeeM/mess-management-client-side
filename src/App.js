@@ -27,6 +27,7 @@ import OtherCostEdite from "./pages/OtherCost/OtherCostEdite";
 import OtherCostList from "./pages/OtherCost/OtherCostList";
 
 import SummaryList from "./Componets/SummaryList";
+import LoginPage from "./Componets/LoginPage";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
 
           <Route path="/summary" element={<SummaryList />} />
         </Route>
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </>
   );

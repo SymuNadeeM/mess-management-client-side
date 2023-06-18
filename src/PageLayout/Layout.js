@@ -19,25 +19,25 @@ const Layout = () => {
         <div className="flex justify-between items-center gap-2 ">
           <div>
             <div onClick={handleClick} className="block md:hidden">
-              <i class="fa-solid fa-bars  text-2xl "></i>
+              <i className="fa-solid fa-bars  text-2xl "></i>
             </div>
             <div
               className={
                 !nav
-                  ? "fixed left-0 top-0 w-[55%] h-full  ease-in-out duration-500 bg-[#C4DFDF] md:hidden"
+                  ? "fixed left-0 top-0 w-[55%] h-full  ease-in-out duration-500 bg-[#0C134F] md:hidden"
                   : "fixed left-[-100%] duration-200"
               }
             >
               <div className="p-5 ">
                 <div className="flex items-center justify-between">
                   <div className=" flex items-center gap-[4px] md:gap-2">
-                    <i class="fa-solid fa-plate-wheat text-2xl  text-[#E55807]"></i>
+                    <i className="fa-solid fa-plate-wheat text-2xl  text-[#E55807]"></i>
                     <h3 className="text-[#025464] font-archivo2 text-lg font-bold">
                       SUN HOSTEL
                     </h3>
                   </div>
                   <div onClick={handleClick}>
-                    <i class="fa-regular fa-circle-xmark text-green hover:text-red-600 duration-150 text-xl"></i>
+                    <i className="fa-regular fa-circle-xmark text-green hover:text-red-600 duration-150 text-xl"></i>
                   </div>
                 </div>
                 <hr className="mt-2" />
@@ -46,7 +46,7 @@ const Layout = () => {
                   <div className=" flex  items-center  text-bold font-semibold  duration-150">
                     <i className="fa-solid fa-house-chimney text-gray-700 "></i>
                     <Link
-                      className="px-3 text-bold text-[#4C4C6D] hover:text-gray-400 duration-150 "
+                      className="px-3 text-bold text-white hover:text-gray-400 duration-150 "
                       to="dashboard"
                     >
                       Dashboard
@@ -59,7 +59,7 @@ const Layout = () => {
                     <i className="fa-solid fa-user-plus text-gray-700"></i>
                     <Link
                       to="members-list"
-                      className="px-3  text-bold text-[#4C4C6D] hover:text-gray-400 duration-150"
+                      className="px-3  text-bold text-white hover:text-gray-400 duration-150"
                     >
                       Members List
                     </Link>
@@ -70,7 +70,7 @@ const Layout = () => {
                   >
                     <i className="fa-solid fa-sack-dollar text-gray-700"></i>
                     <Link
-                      className="px-3 text-bold text-[#4C4C6D] hover:text-gray-400 duration-150 "
+                      className="px-3 text-bold text-white hover:text-gray-400 duration-150 "
                       to="money-list"
                     >
                       Amount
@@ -82,7 +82,7 @@ const Layout = () => {
                   >
                     <i className="fa-solid fa-fish text-gray-700"></i>
                     <Link
-                      className="px-3 text-[#4C4C6D] hover:text-gray-400 duration-150  text-bold "
+                      className="px-3 text-white hover:text-gray-400 duration-150  text-bold "
                       to="meal-list"
                     >
                       Meal
@@ -94,7 +94,7 @@ const Layout = () => {
                   >
                     <i className="fa-regular fa-calendar text-gray-700"></i>
                     <Link
-                      className="px-3 text-[#4C4C6D] hover:text-gray-400 duration-150  text-bold"
+                      className="px-3 text-white hover:text-gray-400 duration-150  text-bold"
                       to="bazar-day-list"
                     >
                       Add Bazar Day
@@ -107,7 +107,7 @@ const Layout = () => {
                     <i className="fa-solid fa-clipboard-list text-gray-700"></i>
 
                     <Link
-                      className="px-3 text-[#4C4C6D] hover:text-gray-400 duration-150  text-bold"
+                      className="px-3 text-white hover:text-gray-400 duration-150  text-bold"
                       to="meal-cost-list"
                     >
                       Bazar List
@@ -117,9 +117,9 @@ const Layout = () => {
                     className="flex  items-center text-bold font-semibold 
                duration-150"
                   >
-                    <i className="fa-solid fa-file-invoice-dollar text-gray-700"></i>
+                    <i className="fa-solid fa-file-invoice-dollar text-[#ECF8F9]"></i>
                     <Link
-                      className="px-3 text-[#4C4C6D] hover:text-gray-400 duration-150  text-bold"
+                      className="px-3 text-white hover:text-gray-400 duration-150  text-bold"
                       to="other-cost-list"
                     >
                       Other Cost
@@ -129,9 +129,10 @@ const Layout = () => {
                     className="flex  items-center text-bold font-semibold 
                duration-150"
                   >
-                    <i className="fa-solid fa-file-invoice-dollar text-gray-700"></i>
+                    <i className="fa-solid fa-square-poll-vertical text-gray-700"></i>
+
                     <Link
-                      className="px-3 text-[#4C4C6D] hover:text-gray-400 duration-150  text-bold"
+                      className="px-3 text-white hover:text-gray-400 duration-150  text-bold"
                       to="summary"
                     >
                       Summary
@@ -162,7 +163,7 @@ const Layout = () => {
               to="/home"
               className="ml-6 flex items-center gap-1  font-archivo2 text-lg font-bold "
             >
-              <i class="fa-solid fa-plate-wheat text-2xl  text-[#E55807]"></i>
+              <i className="fa-solid fa-plate-wheat text-2xl  text-[#E55807]"></i>
               <h3 className="text-[#025464]"> SUN HOSTEL</h3>
             </Link>
           </div>
@@ -202,7 +203,7 @@ const Layout = () => {
       {/* ********* Total DashBoard ******* */}
 
       {/* <div className="flex mt-[66px]"> */}
-      <div className="flex mt-[66px]">
+      <div className="flex mt-[66px] bg-[#C0DBEA]">
         <div className=" w-0 md:w-1/6 min-h-screen  bg-bgdshb md:shadow-md ">
           <div className="hidden text-white md:flex md:fixed">
             <div>
@@ -271,7 +272,8 @@ const Layout = () => {
                 className="flex px-6 py-3 items-center text-bold font-semibold 
                duration-150"
               >
-                <i className="fa-solid fa-file-invoice-dollar text-icon"></i>
+                <i className="fa-solid fa-square-poll-vertical text-icon"></i>
+
                 <Link className="px-4 text-bold" to="summary">
                   Summary
                 </Link>
@@ -298,7 +300,7 @@ const Layout = () => {
         {/* ********* END LARGE ******* */}
 
         {/* ********* OUT-LET ******* */}
-        <div className="w-full md:w-5/6  my-[30px] ml-[20px] mr-[8px]">
+        <div className="w-full md:w-5/6  my-[30px] ml-[20px] mr-[8px] ">
           <Outlet />
         </div>
       </div>

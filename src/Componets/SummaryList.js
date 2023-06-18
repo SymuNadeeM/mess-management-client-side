@@ -1,13 +1,45 @@
 import React from "react";
+import useAsync from "../hook/useAsync";
+import DashboardServices from "../services/DashboardServices";
 
 const SummaryList = () => {
+  const { data, error, loading } = useAsync(DashboardServices.summary);
+  console.log("data ===>", data);
+
+  const paidAmountWithMealRate = data?.paidAmount?.map((item) => {
+    return {
+      ...item,
+      oneMealCost: data?.oneMealCost,
+      extraCostPerPerson: data?.extraCostPerPerson,
+    };
+  });
+
+  const mergedArray = [paidAmountWithMealRate, data?.dailyMealCount]?.reduce(
+    (result, array) => {
+      array?.forEach((obj) => {
+        const existingObj = result.find(
+          (item) => item?.member?._id === obj._id
+        );
+        if (existingObj) {
+          Object.assign(existingObj, obj);
+        } else {
+          result.push(obj);
+        }
+      });
+      return result;
+    },
+    []
+  );
+
+  console.log("mergedArray", mergedArray);
+
   return (
     <div>
       <div className="mt-[50px] mb-2">
         <div className="flex items-center my-4 gap-2">
-          <i class="fa-solid fa-sack-dollar text-green2 text-2xl"></i>
+          <i className="fa-solid fa-sack-dollar text-green2 text-2xl"></i>
           <h1 className=" text-[#40513B] text-2xl font-abc">
-            All Member Money List
+            All Member summary List
           </h1>
         </div>
       </div>
@@ -16,42 +48,38 @@ const SummaryList = () => {
           <thead className=" border">
             <tr className="bg-[#faf7f7] font-archivo  text-text2 shadow text-sm">
               <th className="p-2  border">Name</th>
-              <th className="p-2 border">Deposit</th>
-              <th className="p-2 border">Cost</th>
-              <th className="p-2 border">Will Get</th>
-              <th className="p-2 border">Due</th>
+
+              <th className="p-2 border">Meal Rate</th>
+              <th className="p-2 border">Total meal</th>
+              <th className="p-2 border">MealCost</th>
               <th className="p-2 border">Extra Cost</th>
+              <th className="p-2 border">Total Cost</th>
+              <th className="p-2 border">Deposit</th>
+              <th className="p-2 border">Will Get/Due</th>
             </tr>
           </thead>
-          <tbody>
-            <tr className=" hover:bg-slate-300">
-              <td className="p-2 border">Nure Alom</td>
-              <td className="p-2 border">2000</td>
-              <td className="p-2 border">1401</td>
-              <td className="p-2 border">191</td>
-              <td className="p-2 border">11</td>
-              <td className="p-2 border">191</td>
-            </tr>
-            <tr className=" bg-slate-600 text-white">
-              <td className="p-2 border">
-                <strong>Total: </strong>
-              </td>
-              <td className="p-2 border">
-                <strong> ৳ 15000</strong>
-              </td>
-              <td className="p-2 border">
-                <strong>৳ 1260</strong>
-              </td>
-              <td className="p-2 border">
-                <strong>৳ 8575</strong>
-              </td>
-              <td className="p-2 border">
-                <strong>৳ 8575</strong>
-              </td>
-              <td className="p-2 border">
-                <strong>৳ 8575</strong>
-              </td>
-            </tr>
+          <tbody className="bg-white">
+            {loading
+              ? "loading.."
+              : mergedArray?.map((item) => {
+                  const otherCost = item?.extraCostPerPerson;
+                  const mealcost = item?.mealCount * item?.oneMealCost;
+                  const totalCost = otherCost + mealcost;
+                  const willGet = item?.amount - totalCost;
+                  return (
+                    <tr key={item._id} className="border">
+                      <td className="text-left">{item?.member?.name}</td>
+
+                      <td>{parseFloat(item?.oneMealCost).toFixed(2)}</td>
+                      <td>{item?.mealCount}</td>
+                      <td>{parseFloat(mealcost).toFixed(2)}</td>
+                      <td>{parseFloat(otherCost).toFixed(2)}</td>
+                      <td>{parseFloat(totalCost).toFixed(2)}</td>
+                      <td>{item?.amount}</td>
+                      <td>{parseFloat(willGet).toFixed(2)}</td>
+                    </tr>
+                  );
+                })}
           </tbody>
         </table>
       </div>
