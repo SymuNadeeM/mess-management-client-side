@@ -12,11 +12,13 @@ const OtherCostList = () => {
 
   return (
     <>
-      <div className="mt-[30px]   px-[30px] md:p-[10px]">
+      <div className="mt-[30px]   px-[30px] my-[30px] mx-[20px] md:p-[10px]">
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center my-4 gap-2">
-            <i className="fa-solid fa-money-bill-1-wave text-2xl text-green "></i>
-            <h1 className=" text-[#40513B] text-2xl font-abc">Other Cost</h1>
+            <i className="fa-solid fa-money-bill-1-wave text-2xl text-green dark:text-white "></i>
+            <h1 className=" text-[#40513B] dark:text-dark_blue2 text-2xl font-abc">
+              Other Cost
+            </h1>
           </div>
           <div className="flex items-center gap-2  text-white font-abc text-sm  bg-green2 px-3 py-2 rounded hover:bg-btnbg  duration-200 ">
             <i className="fa-solid fa-plus"></i>
@@ -25,7 +27,7 @@ const OtherCostList = () => {
         </div>
         <table className="min-w-full border-collapse block md:table">
           <thead className="block md:table-header-group">
-            <tr className=" bg-[#faf7f7] font-archivo  text-text2    block md:table-row absolute -top-full md:top-auto -left-full md:left-auto shadow-md text-sm  md:relative ">
+            <tr className=" bg-[#faf7f7] dark:bg-darkHead dark:text-white font-archivo  text-text2    block md:table-row absolute -top-full md:top-auto -left-full md:left-auto shadow-md text-sm  md:relative ">
               <th className="  p-2 text-left block md:table-cell">Date</th>
               <th className=" p-2 text-left block md:table-cell">Details</th>
               <th className=" p-2 text-left block md:table-cell">Amount</th>
@@ -38,7 +40,7 @@ const OtherCostList = () => {
               ? "Loading.."
               : data?.data?.map((items) => (
                   <tr
-                    className=" bg-white font-archivo border border-spacing-2  border-btnbg md:border-none block md:table-row"
+                    className=" bg-white dark:bg-darkHover dark:text-white font-archivo border border-spacing-2  border-btnbg md:border-none block md:table-row"
                     key={items._id}
                   >
                     <td className=" flex  py-2 px-4 md:px-2 text-left  md:table-cell">
@@ -86,7 +88,7 @@ const OtherCostList = () => {
                     </td>
                   </tr>
                 ))}
-            <tr className=" bg-[#FFECEC]  font-archivo">
+            <tr className=" bg-[#FFECEC]  dark:bg-darkBottom dark:text-white font-archivo">
               <td></td>
               <td className="md:p-2">Total :</td>
               <td className="md:p-2">{data.amount}Tk</td>

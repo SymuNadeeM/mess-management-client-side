@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useAsync from "../../hook/useAsync";
 import useBazarList from "../../hook/useBazarList";
 import MemberServices from "../../services/MemberServices";
@@ -8,22 +9,30 @@ const AddMealCost = () => {
 
   return (
     <>
-      <div className="mt-[30px]  px-[30px] md:px-0">
+      <div className="m-[40px]  px-[30px] md:px-0">
         <div className="flex items-center my-4 gap-2">
-          <i className="fa-solid fa-sack-dollar text-2xl text-green"></i>
-          <h1 className=" text-[#40513B] text-2xl font-abc">Add Bazar List</h1>
+          <i className="fa-solid fa-sack-dollar text-2xl text-green dark:text-white"></i>
+          <h1 className=" text-[#40513B] dark:text-dark_blue2 text-2xl font-abc">
+            Add Bazar List
+          </h1>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="mt-2 dark:text-green">
+          <i className="fa-solid fa-arrow-left text-sm "></i>
+          <Link to="/meal-cost-list" className="ml-1 text-sm font-Robbi">
+            Back To BazarList
+          </Link>
+        </div>
+        <div className="flex items-center justify-center mt-[30px]">
           <div className="w-full md:w-1/2 ">
             <form
               onSubmit={handleSubmit(submitForm)}
-              className="bg-[#95BDFF] p-4 rounded-md"
+              className="bg-[#95BDFF] dark:bg-darkHover p-4 "
             >
               <div className="  flex flex-col items-center justify-center space-y-2">
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="meal"
-                    className="font-jose text-lg text-white"
+                    className="font-jose text-lg text-white dark:text-dark_blue2"
                   >
                     Date
                   </label>
@@ -31,7 +40,7 @@ const AddMealCost = () => {
                   <input
                     type="date"
                     name="date"
-                    className=" px-4 py-2 outline-none rounded "
+                    className=" px-4 py-2 outline-none "
                     {...register("date")}
                     placeholder="date"
                   />
@@ -40,14 +49,14 @@ const AddMealCost = () => {
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="itemDescription"
-                    className="font-jose text-lg text-white"
+                    className="font-jose text-lg text-white dark:text-dark_blue2"
                   >
                     Item Name
                   </label>
                   <textarea
                     type="text"
                     name="itemDescription"
-                    className=" px-4 py-2 outline-none rounded "
+                    className=" px-4 py-2 outline-none "
                     {...register("itemDescription")}
                     placeholder="itemDescription"
                     cols="30"
@@ -61,7 +70,7 @@ const AddMealCost = () => {
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="itemAmount"
-                    className="font-jose text-lg text-white"
+                    className="font-jose text-lg text-white dark:text-dark_blue2"
                   >
                     item Amount
                   </label>
@@ -69,7 +78,7 @@ const AddMealCost = () => {
                   <input
                     type="number"
                     name="itemAmount"
-                    className=" px-4 py-2 outline-none rounded "
+                    className=" px-4 py-2 outline-none "
                     {...register("itemAmount")}
                     placeholder="item Amount"
                   />
@@ -82,13 +91,13 @@ const AddMealCost = () => {
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="amount"
-                    className="font-jose text-lg text-white"
+                    className="font-jose text-lg text-white dark:text-dark_blue2"
                   >
                     Who did the Bazar?
                   </label>
 
                   <select
-                    className="px-4 py-2 outline-none rounded"
+                    className="px-4 py-2 outline-none"
                     {...register("member", {
                       required: false,
                     })}

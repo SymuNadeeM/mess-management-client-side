@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
+  // ...
   theme: {
     extend: {
       fontFamily: {
@@ -11,14 +13,12 @@ module.exports = {
         archivo: ["Archivo", "sans-serif"],
         archivo2: ["Archivo Narrow", "sans-serif"],
       },
-      backgroundImage: {
-        
-      },
+      backgroundImage: {},
       colors: {
         current: "currentColor",
         maintext: "#000000de",
         bgdshb: "#222a45",
-        food:"#FEAA1A",
+        food: "#FEAA1A",
         icon: "#8990a2",
         black: "#000000",
         white: "#fff",
@@ -31,6 +31,16 @@ module.exports = {
         text1: "#73777B",
         text2: "#181D31",
         dtext1: "#B2B2B2",
+
+        darkMain: "#15202B",
+        darkCard: "#192734",
+        darkHover: "#22303C",
+        dprimaryText: "#ffff",
+        darkHead: "#071952",
+        darkBottom: "#1D5B79",
+        dsecondaryText: "#8899A6",
+        dark_blue1: "#0A6EBD",
+        dark_blue2: "#525FE1",
       },
     },
   },

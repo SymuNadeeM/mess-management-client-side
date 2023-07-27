@@ -19,11 +19,14 @@ const DashBordSummary = () => {
         <Link to="/login">Login 0</Link>
       </div> */}
 
-      <div className="mt-5 grid  md:grid-cols-5    gap-5 ">
+      <div className="mt-5 grid  md:grid-cols-5 my-[30px] mx-[20px]  gap-5 ">
         <div className=" grid col-span-2 gap-5 md:gap-2">
           <div className=" w-full h-[205px]  ">
             <div className="  w-full h-[205px] flex items-center justify-center  relative  ">
-              <img src={imgfle} className=" w-full h-[205px]   rounded-md" />
+              <img
+                src={imgfle}
+                className=" w-full h-[205px]   rounded-md dark:rounded-none"
+              />
               <div className="p-3   absolute top-10 flex  gap-2 ">
                 <div>
                   <p className=" font-Robbi text-sm text-white">
@@ -42,15 +45,17 @@ const DashBordSummary = () => {
               </div>
             </div>
           </div>
-          <div className="p-5 border flex items-center justify-center bg-white shadow-md rounded-md gap-4  ">
+          <div className="p-5 border flex items-center justify-center bg-white dark:border-dark_blue1 dark:bg-darkHover shadow-md dark:rounded-none rounded-md gap-4  ">
             <div className=" bg-[#1B9C85] flex items-start rounded-full p-2">
               <i className="fa-regular fa-circle-check flex items-center justify-center text-white w-[32px] h-[32px]"></i>
             </div>
 
             <div>
-              <p className=" font-Robbi text-xs text-gray-500">Right Now</p>
-              <h3 className=" font-abc text-xl text-gray-800 font-bold">
-                Total MealRate
+              <p className=" font-Robbi text-xs text-gray-500 dark:text-dsecondaryText">
+                Right Now
+              </p>
+              <h3 className=" font-abc text-xl text-gray-800 font-bold dark:text-dprimaryText">
+                MealRate
               </h3>
             </div>
 
@@ -62,14 +67,16 @@ const DashBordSummary = () => {
         </div>
         <div className=" grid col-span-3 ">
           <div className=" grid md:grid-cols-2 gap-4">
-            <div className="p-5 border bg-white shadow-md rounded-md">
+            <div className="p-5 border bg-white shadow-md rounded-md dark:rounded-none dark:border-dark_blue1 dark:bg-darkHover">
               <div className=" flex  items-center flex-col-2   gap-5">
                 <div className=" bg-[#4942E4] flex items-start rounded-full p-2">
                   <i className="fa-solid fa-money-bill-transfer flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500">Our Mess</p>
-                  <h3 className=" font-abc text-xl text-gray-800 font-bold">
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
+                    Our Mess
+                  </p>
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
                     Total Deposite
                   </h3>
                 </div>
@@ -87,14 +94,16 @@ const DashBordSummary = () => {
                 </Link>
               </div>
             </div>
-            <div className="p-5 border bg-white shadow-md rounded-md">
+            <div className="p-5 border bg-white shadow-md rounded-md dark:rounded-none dark:border-dark_blue1 dark:bg-darkHover">
               <div className=" flex  items-center flex-col-2   gap-5">
                 <div className=" bg-[#116D6E] flex items-start rounded-full p-2">
                   <i className="fa-solid fa-yin-yang flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500">Till now</p>
-                  <h3 className=" font-abc text-xl text-gray-800 font-bold">
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
+                    Till now
+                  </p>
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
                     Total Bazar Cost
                   </h3>
                 </div>
@@ -112,14 +121,16 @@ const DashBordSummary = () => {
                 </Link>
               </div>
             </div>
-            <div className="p-5 border bg-white shadow-md rounded-md">
+            <div className="p-5 border bg-white shadow-md rounded-md dark:rounded-none dark:border-dark_blue1 dark:bg-darkHover">
               <div className=" flex  items-center flex-col-2   gap-5">
                 <div className=" bg-[#B799FF] flex items-start rounded-full p-2">
                   <i className="fa-brands fa-digital-ocean flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500">Till now</p>
-                  <h3 className=" font-abc text-xl text-gray-800 font-bold">
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
+                    Till now
+                  </p>
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
                     Total Meal
                   </h3>
                 </div>
@@ -137,16 +148,16 @@ const DashBordSummary = () => {
                 </Link>
               </div>
             </div>
-            <div className="p-5 border bg-white shadow-md rounded-md">
+            <div className="p-5 border bg-white shadow-md rounded-md dark:rounded-none dark:border-dark_blue1 dark:bg-darkHover">
               <div className=" flex  items-center flex-col-2   gap-5">
                 <div className=" bg-[#E57C23] flex items-start rounded-full p-2">
                   <i className="fa-solid fa-money-bill-1-wave flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500">
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
                     Out Of Food
                   </p>
-                  <h3 className=" font-abc text-xl text-gray-800 font-bold">
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
                     Total Other Cost
                   </h3>
                 </div>

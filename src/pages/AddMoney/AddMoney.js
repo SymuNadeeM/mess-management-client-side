@@ -1,32 +1,38 @@
+import { Link } from "react-router-dom";
 import useAsync from "../../hook/useAsync";
 import usePaidAmount from "../../hook/usePaidAmount";
 import MemberServices from "../../services/MemberServices";
 
-
 const AddMoney = () => {
+  const { register, handleSubmit, submitForm, errors } = usePaidAmount();
+  const { data, error, loading } = useAsync(MemberServices.getAllMember);
 
-const {register,handleSubmit,submitForm,errors}=usePaidAmount()
-const {data,error,loading}=useAsync(MemberServices.getAllMember)
-
-  
   return (
     <>
-      <div className="mt-[30px]  px-[30px] md:px-0">
+      <div className="m-[40px]  px-[30px] md:px-0">
         <div className="flex items-center my-4 gap-2">
-          <i className="fa-solid fa-sack-dollar text-2xl text-green"></i>
-          <h1 className=" text-[#40513B] text-2xl font-abc">Add Money</h1>
+          <i className="fa-solid fa-sack-dollar text-2xl text-green dark:text-white"></i>
+          <h1 className=" text-[#40513B] dark:text-dark_blue1 text-2xl font-abc">
+            Add Money
+          </h1>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="mt-2 dark:text-green">
+          <i className="fa-solid fa-arrow-left text-sm "></i>
+          <Link to="/money-list" className="ml-1 text-sm font-Robbi">
+            Back MoneyList
+          </Link>
+        </div>
+        <div className="flex items-center justify-center mt-[30px]">
           <div className="w-full md:w-1/2 ">
             <form
               onSubmit={handleSubmit(submitForm)}
-              className="bg-[#95BDFF] p-4 rounded-md"
+              className="bg-[#95BDFF] dark:bg-darkHover p-4 rounded-md"
             >
               <div className="  flex flex-col items-center justify-center space-y-2">
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="amount"
-                    className="font-jose text-lg text-white"
+                    className="font-jose text-lg text-white dark:text-dark_blue2"
                   >
                     Amount
                   </label>
@@ -44,7 +50,7 @@ const {data,error,loading}=useAsync(MemberServices.getAllMember)
                 <div className="w-full md:w-3/4 flex flex-col  space-y-1">
                   <label
                     htmlFor="amount"
-                    className="font-jose text-lg text-white"
+                    className="font-jose text-lg text-white dark:text-dark_blue2"
                   >
                     Name
                   </label>
@@ -55,12 +61,13 @@ const {data,error,loading}=useAsync(MemberServices.getAllMember)
                       required: false,
                     })}
                   >
-                    { loading ? "Loading..." :
-                    data?.data?.map((item, i) => (
-                      <option key={i + 1} value={item._id}>
-                        {item?.name}
-                      </option>
-                    ))}
+                    {loading
+                      ? "Loading..."
+                      : data?.data?.map((item, i) => (
+                          <option key={i + 1} value={item._id}>
+                            {item?.name}
+                          </option>
+                        ))}
                   </select>
                 </div>
 
