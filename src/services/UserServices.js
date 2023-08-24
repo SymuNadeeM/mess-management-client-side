@@ -1,4 +1,4 @@
-import requests from "./httpService";
+import requests from "../lib/httpRequest";
 
 const UserServices = {
   userSignUp: async (body) => {
