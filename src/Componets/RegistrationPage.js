@@ -1,32 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React from "react";
 import img1 from "../../src/assets/dia.jpg";
-import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useLoginRegisterSubmit from "../hook/useLoginRegisterSubmit";
 
 const RegistrationPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
-
-  const [passwordsMatch, setPasswordsMatch] = useState(true);
-
-  const onSubmit = (data) => {
-    if (!passwordsMatch) {
-      return;
-    }
-    console.log(data);
-  };
-
-  const watchPassword = watch("password", ""); // Watching the 'password' input
-
-  const handleConfirmPasswordChange = (event) => {
-    const confirmedPassword = event.target.value;
-    setPasswordsMatch(watchPassword === confirmedPassword);
-  };
+  const { onSubmitRegister, handleSubmit, register, errors, handleConfirmPasswordChange, passwordsMatch } = useLoginRegisterSubmit();
 
   return (
     <>
@@ -42,7 +21,7 @@ const RegistrationPage = () => {
               <div className=" bg-white py-4 px-4 rounded-md">
                 <h2 className="text-3xl font-abc  mb-4">Register</h2>
                 <p className="mb-4">Create your account. It’s free and only take a minute</p>
-                <form onSubmit={handleSubmit(onSubmit)} action="#" className=" w-full">
+                <form onSubmit={handleSubmit(onSubmitRegister)} action="#" className=" w-full">
                   <div className="grid w-full grid-cols-2 gap-5">
                     <div>
                       {errors.firstName?.type === "required" && (

@@ -3,14 +3,24 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { notifySuccess } from "../Componets/ToastifyMessage";
 import UserServices from "../services/UserServices";
+import { useState } from "react";
 
 const useLoginRegisterSubmit = () => {
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
+
+  const watchPassword = watch("password", ""); // Watching the 'password' input
+
+  const handleConfirmPasswordChange = (event) => {
+    const confirmedPassword = event.target.value;
+    setPasswordsMatch(watchPassword === confirmedPassword);
+  };
 
   // on submit register
   const onSubmitRegister = async (data) => {
@@ -20,6 +30,10 @@ const useLoginRegisterSubmit = () => {
       email: data.email,
       password: data.password,
     };
+
+    if (!passwordsMatch) {
+      return;
+    }
 
     UserServices.userSignUp(userData)
       .then((res) => {
@@ -64,6 +78,8 @@ const useLoginRegisterSubmit = () => {
     handleSubmit,
     onSubmitLogin,
     onSubmitRegister,
+    passwordsMatch,
+    handleConfirmPasswordChange,
   };
 };
 
