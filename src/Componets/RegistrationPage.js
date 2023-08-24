@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import img1 from "../../src/assets/dia.jpg";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const RegistrationPage = () => {
   const {
@@ -133,6 +134,12 @@ const RegistrationPage = () => {
                     </button>
                   </div>
                 </form>
+                <div className="mt-5 text-center lg:text-left">
+                  Already have an account ?{" "}
+                  <Link className="text-dsecondaryText hover:text-blue-400 cursor-pointer " to="/login">
+                    SignIn
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
