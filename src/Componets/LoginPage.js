@@ -1,15 +1,10 @@
 import React from "react";
 import img1 from "../../src/assets/dia.jpg";
-import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useLoginRegisterSubmit from "../hook/useLoginRegisterSubmit";
 
 const LoginPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { onSubmitLogin, handleSubmit, register, errors } = useLoginRegisterSubmit();
   return (
     <>
       <div>
@@ -23,7 +18,7 @@ const LoginPage = () => {
 
               <div className=" px-[30px] md:px-1 w-full md:w-2/3">
                 <div className=" bg-white py-4 px-4 rounded-md">
-                  <form onSubmit={handleSubmit(onSubmit)}>
+                  <form onSubmit={handleSubmit(onSubmitLogin)}>
                     {/* <!-- Email input --> */}
                     {errors.email?.type === "required" && (
                       <p className="text-red-500 mb-3" role="alert">
@@ -39,12 +34,6 @@ const LoginPage = () => {
                         name="email"
                         {...register("email", { required: true })}
                       />
-                      {/*     <label
-                        htmlFor="email"
-                        className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                      >
-                        Email address
-                      </label> */}
                     </div>
 
                     {/* <!-- Password input --> */}
@@ -62,12 +51,6 @@ const LoginPage = () => {
                         name="password"
                         {...register("password", { required: true })}
                       />
-                      {/*  <label
-                        htmlFor="password"
-                        className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                      >
-                        Password
-                      </label> */}
                     </div>
 
                     {/* <!-- Login button --> */}
