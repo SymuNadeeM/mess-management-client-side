@@ -8,36 +8,21 @@ const DashBordSummary = () => {
   const { data, error, loading } = useAsync(DashboardServices.dashboard);
   console.log("data ===>", data);
 
-  const totalMassBalance =
-    data?.totalAmount - (data?.totalBazarCost + data?.totalOthersCost);
+  const totalMassBalance = data?.totalAmount - (data?.totalBazarCost + data?.totalOthersCost);
 
   const totalMealRate = data?.totalBazarCost / data?.totalMealCount;
 
   return (
     <div>
-      <div className="">
-        <Link to="/login">Login 0</Link>
-      </div>
-      <div className="">
-        <Link to="/regpage">RegPage</Link>
-      </div>
-
       <div className="mt-5 grid  md:grid-cols-5 my-[30px] mx-[20px]  gap-5 ">
         <div className=" grid col-span-2 gap-5 md:gap-2">
           <div className=" w-full h-[205px]  ">
             <div className="  w-full h-[205px] flex items-center justify-center  relative  ">
-              <img
-                src={imgfle}
-                className=" w-full h-[205px]   rounded-md dark:rounded-none"
-              />
+              <img src={imgfle} className=" w-full h-[205px]   rounded-md dark:rounded-none" alt="" />
               <div className="p-3   absolute top-10 flex  gap-2 ">
                 <div>
-                  <p className=" font-Robbi text-sm text-white">
-                    After Calculates All Costs And Deposits
-                  </p>
-                  <h3 className="  font-abc text-4xl text-white font-bold">
-                    MESS BLANCE
-                  </h3>
+                  <p className=" font-Robbi text-sm text-white">After Calculates All Costs And Deposits</p>
+                  <h3 className="  font-abc text-4xl text-white font-bold">MESS BLANCE</h3>
                 </div>
                 <div>
                   <h1 className="ml-8 mt-3 text-6xl font-jose text-[#fff]">
@@ -54,12 +39,8 @@ const DashBordSummary = () => {
             </div>
 
             <div>
-              <p className=" font-Robbi text-xs text-gray-500 dark:text-dsecondaryText">
-                Right Now
-              </p>
-              <h3 className=" font-abc text-xl text-gray-800 font-bold dark:text-dprimaryText">
-                MealRate
-              </h3>
+              <p className=" font-Robbi text-xs text-gray-500 dark:text-dsecondaryText">Right Now</p>
+              <h3 className=" font-abc text-xl text-gray-800 font-bold dark:text-dprimaryText">MealRate</h3>
             </div>
 
             <h1 className="ml-8 mt-3 text-3xl font-jose text-[#E55807]">
@@ -76,12 +57,8 @@ const DashBordSummary = () => {
                   <i className="fa-solid fa-money-bill-transfer flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
-                    Our Mess
-                  </p>
-                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
-                    Total Deposite
-                  </h3>
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">Our Mess</p>
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">Total Deposite</h3>
                 </div>
               </div>
               <div className=" flex  items-center flex-col-2 gap-5">
@@ -103,12 +80,8 @@ const DashBordSummary = () => {
                   <i className="fa-solid fa-yin-yang flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
-                    Till now
-                  </p>
-                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
-                    Total Bazar Cost
-                  </h3>
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">Till now</p>
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">Total Bazar Cost</h3>
                 </div>
               </div>
               <div className=" flex  items-center flex-col-2 gap-5">
@@ -130,12 +103,8 @@ const DashBordSummary = () => {
                   <i className="fa-brands fa-digital-ocean flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
-                    Till now
-                  </p>
-                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
-                    Total Meal
-                  </h3>
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">Till now</p>
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">Total Meal</h3>
                 </div>
               </div>
               <div className=" flex  items-center flex-col-2 gap-5">
@@ -157,12 +126,8 @@ const DashBordSummary = () => {
                   <i className="fa-solid fa-money-bill-1-wave flex items-center justify-center text-white w-[32px] h-[32px]"></i>
                 </div>
                 <div className="">
-                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">
-                    Out Of Food
-                  </p>
-                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">
-                    Total Other Cost
-                  </h3>
+                  <p className=" font-Robbi text-sm text-gray-500 dark:text-dsecondaryText">Out Of Food</p>
+                  <h3 className=" font-abc text-xl text-gray-800 dark:text-dprimaryText font-bold">Total Other Cost</h3>
                 </div>
               </div>
               <div className=" flex  items-center flex-col-2 gap-5">

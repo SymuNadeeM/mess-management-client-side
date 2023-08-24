@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./PageLayout/Layout";
 
 import AddMoney from "./pages/AddMoney/AddMoney";
@@ -29,12 +29,23 @@ import OtherCostList from "./pages/OtherCost/OtherCostList";
 import SummaryList from "./Componets/SummaryList";
 import LoginPage from "./Componets/LoginPage";
 import RegistrationPage from "./Componets/RegistrationPage";
+import PrivateRoute from "./Componets/PrivateRoute";
+import useUserAuth from "./hook/useUserAuth";
 
 function App() {
+  const { isAuth } = useUserAuth();
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Layout />
+            </PrivateRoute>
+          }
+        >
           <Route path="/" element={<DashBoard />} />
           <Route path="/dashboard" element={<DashBoard />} />
           {/* member */}
@@ -70,8 +81,8 @@ function App() {
 
           <Route path="/summary" element={<SummaryList />} />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/regpage" element={<RegistrationPage />} />
+        <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
+        <Route path="/regpage" element={isAuth ? <Navigate to="/" /> : <RegistrationPage />} />
       </Routes>
     </>
   );
