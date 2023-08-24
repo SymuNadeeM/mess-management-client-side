@@ -1,7 +1,32 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState } from "react";
 import img1 from "../../src/assets/dia.jpg";
+import { useForm } from "react-hook-form";
 
 const RegistrationPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
+
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  const onSubmit = (data) => {
+    if (!passwordsMatch) {
+      return;
+    }
+    console.log(data);
+  };
+
+  const watchPassword = watch("password", ""); // Watching the 'password' input
+
+  const handleConfirmPasswordChange = (event) => {
+    const confirmedPassword = event.target.value;
+    setPasswordsMatch(watchPassword === confirmedPassword);
+  };
+
   return (
     <>
       <section className="h-screen">
@@ -9,37 +34,67 @@ const RegistrationPage = () => {
           {/* <!-- Left column container with background--> */}
           <div className=" grid md:grid-cols-2 gap-3 justify-center items-center">
             <div className=" flex items-center justify-center">
-              <img src={img1} className=" h-screen" alt="Sampleimage" />
+              <img src={img1} className=" h-screen object-cover object-center" alt="Sampleimage" />
             </div>
 
             <div className="w-full lg:w-3/4 py-16 px-12">
               <div className=" bg-white py-4 px-4 rounded-md">
                 <h2 className="text-3xl font-abc  mb-4">Register</h2>
-                <p className="mb-4">
-                  Create your account. It’s free and only take a minute
-                </p>
-                <form action="#" className=" w-full">
+                <p className="mb-4">Create your account. It’s free and only take a minute</p>
+                <form onSubmit={handleSubmit(onSubmit)} action="#" className=" w-full">
                   <div className="grid w-full grid-cols-2 gap-5">
-                    <input
-                      type="text"
-                      placeholder="Firstname"
-                      className="border border-gray-400 py-1 px-2"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Surname"
-                      className="border border-gray-400 py-1 px-2"
-                    />
+                    <div>
+                      {errors.firstName?.type === "required" && (
+                        <p className="text-red-500 mb-3" role="alert">
+                          First Name is required
+                        </p>
+                      )}
+                      <input
+                        name="firstName"
+                        {...register("firstName", { required: true })}
+                        type="text"
+                        placeholder="First Name"
+                        className="border border-gray-400 py-1 px-2 w-full"
+                      />
+                    </div>{" "}
+                    <div>
+                      {errors.surName?.type === "required" && (
+                        <p className="text-red-500 mb-3" role="alert">
+                          SurName is required
+                        </p>
+                      )}
+                      <input
+                        name="surName"
+                        {...register("surName", { required: true })}
+                        type="text"
+                        placeholder="Surname"
+                        className="border border-gray-400 py-1 px-2 w-full"
+                      />
+                    </div>
                   </div>
                   <div className="mt-5">
+                    {errors.email?.type === "required" && (
+                      <p className="text-red-500 mb-3" role="alert">
+                        Email is required
+                      </p>
+                    )}
                     <input
+                      name="email"
+                      {...register("email", { required: true })}
                       type="text"
                       placeholder="Email"
                       className="border border-gray-400 py-1 px-2 w-full"
                     />
                   </div>
                   <div className="mt-5">
+                    {errors.password?.type === "required" && (
+                      <p className="text-red-500 mb-3" role="alert">
+                        Password is required
+                      </p>
+                    )}
                     <input
+                      name="password"
+                      {...register("password", { required: true })}
                       type="password"
                       placeholder="Password"
                       className="border border-gray-400 py-1 px-2 w-full"
@@ -47,13 +102,20 @@ const RegistrationPage = () => {
                   </div>
                   <div className="mt-5">
                     <input
+                      name="confirmPassword"
                       type="password"
                       placeholder="Confirm Password"
-                      className="border border-gray-400 py-1 px-2 w-full"
+                      className={`border ${passwordsMatch ? "border-gray-400" : "border-red-500"} py-1 px-2 w-full`}
+                      onChange={handleConfirmPasswordChange}
                     />
+                    {!passwordsMatch && (
+                      <p className="text-red-500 mt-1" role="alert">
+                        Passwords do not match
+                      </p>
+                    )}
                   </div>
                   <div className="mt-5">
-                    <input type="checkbox" className="border border-gray-400" />
+                    <input type="checkbox" className="border border-gray-400 mr-2 mt-1" />
                     <span>
                       I accept the{" "}
                       <a href="#" className="text-purple-500 font-semibold">
@@ -66,7 +128,7 @@ const RegistrationPage = () => {
                     </span>
                   </div>
                   <div className="mt-5">
-                    <button className="w-full bg-purple-500 py-3 text-center text-white">
+                    <button type="submit" className="w-full bg-purple-500 py-3 text-center text-white cursor-pointer">
                       Register Now
                     </button>
                   </div>
