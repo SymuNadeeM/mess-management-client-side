@@ -15,9 +15,12 @@ const DashBordSummary = () => {
 
   return (
     <div>
-      {/* <div className="">
+      <div className="">
         <Link to="/login">Login 0</Link>
-      </div> */}
+      </div>
+      <div className="">
+        <Link to="/regpage">RegPage</Link>
+      </div>
 
       <div className="mt-5 grid  md:grid-cols-5 my-[30px] mx-[20px]  gap-5 ">
         <div className=" grid col-span-2 gap-5 md:gap-2">

@@ -28,6 +28,7 @@ import OtherCostList from "./pages/OtherCost/OtherCostList";
 
 import SummaryList from "./Componets/SummaryList";
 import LoginPage from "./Componets/LoginPage";
+import RegistrationPage from "./Componets/RegistrationPage";
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
           <Route path="/summary" element={<SummaryList />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/regpage" element={<RegistrationPage />} />
       </Routes>
     </>
   );
