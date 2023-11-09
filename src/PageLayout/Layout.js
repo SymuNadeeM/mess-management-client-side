@@ -14,8 +14,8 @@ const Layout = () => {
     <>
       <div className="z-[100] px-[10px] fixed top-0 left-0 right-0 py-4 shadow-md bg-white dark:bg-[#181818]  text-pink-600">
         <SmallNavbar />
-        {/* large screen */}
 
+        {/* large screen */}
         <LargeNavbar />
       </div>
 
@@ -29,8 +29,11 @@ const Layout = () => {
           <div className="hidden text-white md:flex md:fixed">
             <div>
               <div className=" flex mt-8 px-6 py-3 items-center  text-bold font-semibold  duration-150">
-                <i className="fa-solid fa-house-chimney text-icon"></i>
-                <Link className="px-4 text-bold " to="dashboard">
+                <i className="fa-solid fa-house-chimney text-icon "></i>
+                <Link
+                  className="px-4 text-bold hover:text-gray-400 duration-150 "
+                  to="dashboard"
+                >
                   Dashboard
                 </Link>
               </div>
@@ -39,7 +42,10 @@ const Layout = () => {
                duration-150"
               >
                 <i className="fa-solid fa-user-plus text-icon"></i>
-                <Link to="members-list" className="px-4  text-bold">
+                <Link
+                  to="members-list"
+                  className="px-4 hover:text-gray-400 duration-150  text-bold"
+                >
                   Members List
                 </Link>
               </div>
@@ -48,7 +54,10 @@ const Layout = () => {
                duration-150"
               >
                 <i className="fa-solid fa-sack-dollar text-icon"></i>
-                <Link className="px-4 text-bold " to="money-list">
+                <Link
+                  className="px-4 hover:text-gray-400 duration-150 text-bold "
+                  to="money-list"
+                >
                   Amount
                 </Link>
               </div>
@@ -57,7 +66,10 @@ const Layout = () => {
                duration-150"
               >
                 <i className="fa-solid fa-fish text-icon"></i>
-                <Link className="px-4 text-bold " to="meal-list">
+                <Link
+                  className="px-4 hover:text-gray-400 duration-150 text-bold "
+                  to="meal-list"
+                >
                   Meal
                 </Link>
               </div>
@@ -66,7 +78,10 @@ const Layout = () => {
                duration-150"
               >
                 <i className="fa-regular fa-calendar text-icon"></i>
-                <Link className="px-4 text-bold" to="bazar-day-list">
+                <Link
+                  className="px-4 hover:text-gray-400 duration-150 text-bold"
+                  to="bazar-day-list"
+                >
                   Add Bazar Day
                 </Link>
               </div>
@@ -76,7 +91,10 @@ const Layout = () => {
               >
                 <i className="fa-solid fa-clipboard-list text-icon"></i>
 
-                <Link className="px-4 text-bold" to="meal-cost-list">
+                <Link
+                  className="px-4 hover:text-gray-400 duration-150 text-bold"
+                  to="meal-cost-list"
+                >
                   Bazar List
                 </Link>
               </div>
@@ -85,7 +103,10 @@ const Layout = () => {
                duration-150"
               >
                 <i className="fa-solid fa-file-invoice-dollar text-icon"></i>
-                <Link className="px-4 text-bold" to="other-cost-list">
+                <Link
+                  className="px-4 hover:text-gray-400 duration-150 text-bold"
+                  to="other-cost-list"
+                >
                   Other Cost
                 </Link>
               </div>
@@ -95,7 +116,10 @@ const Layout = () => {
               >
                 <i className="fa-solid fa-square-poll-vertical text-icon"></i>
 
-                <Link className="px-4 text-bold" to="summary">
+                <Link
+                  className="px-4 hover:text-gray-400 duration-150 text-bold"
+                  to="summary"
+                >
                   Summary
                 </Link>
               </div>

@@ -21,7 +21,7 @@ const UserMoneyList = () => {
               All Member Money List
             </h1>
           </div>
-          <div className="flex items-center gap-2  text-white font-abc text-sm  bg-green2 px-3 py-2 rounded hover:bg-btnbg  duration-200 ">
+          <div className="flex items-center gap-2  text-white font-abc text-sm  bg-green2 px-1 md:px-3 py-1 md:py-2  rounded hover:bg-btnbg  duration-200 ">
             <i className="fa-solid fa-plus"></i>
             <Link to="/add-money">Add member amount</Link>
           </div>
