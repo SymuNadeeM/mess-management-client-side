@@ -1,10 +1,11 @@
 import requests from "../lib/httpRequest";
 
 const UserServices = {
+  // creating a new account.
   userSignUp: async (body) => {
     return requests.post("auth/user/signUp", body);
   },
-
+  // log in
   userSignIn: async (body) => {
     return requests.post("auth/user/signIn", body);
   },
